@@ -1,0 +1,8 @@
+D:\John\CompanyManagement\CMConsole\bin\Debug\ConsoleApplication1.exe.config
+D:\John\CompanyManagement\CMConsole\bin\Debug\ConsoleApplication1.exe
+D:\John\CompanyManagement\CMConsole\bin\Debug\ConsoleApplication1.pdb
+D:\John\CompanyManagement\CMConsole\bin\Debug\CompanyManagementDataLayer.dll
+D:\John\CompanyManagement\CMConsole\bin\Debug\CompanyManagementDataLayer.pdb
+D:\John\CompanyManagement\CMConsole\obj\Debug\CMConsole.csprojResolveAssemblyReference.cache
+D:\John\CompanyManagement\CMConsole\obj\Debug\ConsoleApplication1.exe
+D:\John\CompanyManagement\CMConsole\obj\Debug\ConsoleApplication1.pdb

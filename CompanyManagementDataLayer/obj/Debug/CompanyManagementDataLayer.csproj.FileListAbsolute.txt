@@ -1,0 +1,6 @@
+D:\John\CompanyManagement\CompanyManagementDataLayer\bin\Debug\CompanyManagementDataLayer.dll.config
+D:\John\CompanyManagement\CompanyManagementDataLayer\bin\Debug\CompanyManagementDataLayer.dll
+D:\John\CompanyManagement\CompanyManagementDataLayer\bin\Debug\CompanyManagementDataLayer.pdb
+D:\John\CompanyManagement\CompanyManagementDataLayer\obj\Debug\CompanyManagementDataLayer.csprojResolveAssemblyReference.cache
+D:\John\CompanyManagement\CompanyManagementDataLayer\obj\Debug\CompanyManagementDataLayer.dll
+D:\John\CompanyManagement\CompanyManagementDataLayer\obj\Debug\CompanyManagementDataLayer.pdb
