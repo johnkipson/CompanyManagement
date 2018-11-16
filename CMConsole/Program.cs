@@ -23,7 +23,6 @@ namespace CMConsole
             //program.AddEmployee();
             program.AssignEmployeeToProject();
 
-
             Console.Read();
         }
 
