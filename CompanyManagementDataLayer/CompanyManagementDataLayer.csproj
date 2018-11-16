@@ -46,7 +46,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CMDataClasses.dbml</DependentUpon>
     </Compile>
+    <Compile Include="CMResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="DataLayer.cs" />
+    <Compile Include="Enum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -73,6 +79,12 @@
     <None Include="CMDataClasses.dbml.layout">
       <DependentUpon>CMDataClasses.dbml</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CMResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CMResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

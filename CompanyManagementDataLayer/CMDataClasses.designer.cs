@@ -27,9 +27,10 @@ namespace CompanyManagementDataLayer
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
-		
-    #region Extensibility Method Definitions
-    partial void OnCreated();
+        internal object projects;
+
+        #region Extensibility Method Definitions
+        partial void OnCreated();
     partial void InsertAddress(Address instance);
     partial void UpdateAddress(Address instance);
     partial void DeleteAddress(Address instance);
