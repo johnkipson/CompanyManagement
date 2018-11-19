@@ -19,7 +19,8 @@ namespace CMConsole
             //program.GetEmployeeCountForProject();
             //program.GetAllEmployeesForProject();
             //program.GetAllTasksForEmployee();
-            program.GetAllTechnologyTasksForEmployee();
+            //program.GetAllTechnologyTasksForEmployee();
+            program.GetAllTechnologyProjects();
             //program.AddProject();
             //program.AddTechnology();
             //program.AddEmployee();
@@ -104,8 +105,15 @@ namespace CMConsole
                 Console.WriteLine("Task Title is : " + task.TaskTittle);
             }
         }
-
-
+        public void GetAllTechnologyProjects()
+        {
+            int technologyID = 1;
+            List<Project> projects = dataLayer.GetAllTechnologyProjects(technologyID);
+            foreach (Project project in projects)
+            {
+                Console.WriteLine("Project Name is : " + project.ProjectName);
+            }
+        }
         public void AddProject()
         {
             try
