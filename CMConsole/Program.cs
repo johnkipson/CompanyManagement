@@ -31,7 +31,8 @@ namespace CMConsole
             //program.AddEmployee();
             //program.AssignEmployeeToProject();
             //program.CreateTaskInProject();
-            program.AssignTechnologyToTask();
+            //program.AssignTechnologyToTask();
+            program.UpdateTechnologiesForTask();
 
 
             Console.Read();
@@ -73,7 +74,7 @@ namespace CMConsole
             List<Employee> employees = dataLayer.GetAllEmployeesForProjects(projectID);
             foreach (Employee employee in employees)
             {
-                Console.WriteLine("Employee Name is : " +employee.FirstName);
+                Console.WriteLine("Employee Name is : " + employee.FirstName);
             }
         }
         public void GetAllDelayedProjects()
@@ -106,7 +107,7 @@ namespace CMConsole
         {
             int technologyID = 1;
             int employeeID = 1;
-            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTechnologyTasksForEmployee(technologyID,employeeID);
+            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTechnologyTasksForEmployee(technologyID, employeeID);
             foreach (CompanyManagementDataLayer.Task task in tasks)
             {
                 Console.WriteLine("Task Title is : " + task.TaskTittle);
@@ -154,7 +155,7 @@ namespace CMConsole
                 Console.WriteLine("Project Name is : " + project.ProjectName);
             }
         }
-        
+
         public void GetAllDelayedTasksForEmployee()
         {
             int employeeID = 1;
@@ -234,7 +235,7 @@ namespace CMConsole
             {
                 CompanyManagementDataLayer.Task task = new CompanyManagementDataLayer.Task();
                 task.TaskTittle = "ABC";
-                task.StatusId= Convert.ToInt32(CMEnum.Status.Active);
+                task.StatusId = Convert.ToInt32(CMEnum.Status.Active);
                 int projectID = 1;
 
                 dataLayer.CreateTaskInProject(task, projectID);
@@ -252,6 +253,21 @@ namespace CMConsole
                 int taskID = 1;
 
                 dataLayer.AssignTechnologyToTask(technologyID, taskID);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        
+        public void UpdateTechnologiesForTask()
+        {
+            try
+            {
+                List<int> technologyIDs = new List<int>() {1,2,3};
+                int taskID = 1;
+
+                dataLayer.UpdateTechnologiesForTask(technologyIDs, taskID);
             }
             catch (Exception ex)
             {

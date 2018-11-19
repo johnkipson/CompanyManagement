@@ -251,6 +251,47 @@ namespace CompanyManagementDataLayer
             dataContext.SubmitChanges();
         }
         
+        public void UpdateTechnologiesForTask(List<int> technologyIDs, int taskID)
+        {
+            string checkCompulsoryFields = DataLayerHelper.CheckCompulsoryTechnologyTaskUpdateColumn(technologyIDs, taskID);
+            if (checkCompulsoryFields != CMResources.AllFieldsPresent)
+            {
+                throw new Exception(checkCompulsoryFields);
+            }
+           
+            bool isTaskExist = IsTaskExist(taskID);
+            if (!isTaskExist)
+            {
+                throw new Exception(CMResources.TaskIDNotExist);
+            }
+
+            List<TaskTechnology> taskTechnologies = (from taskTechnology in dataContext.TaskTechnologies
+                                         where taskTechnology.TaskId == taskID
+                                         select taskTechnology).ToList();
+
+            dataContext.TaskTechnologies.DeleteAllOnSubmit(taskTechnologies);
+            dataContext.SubmitChanges();
+
+
+            foreach (int technologyID in technologyIDs)
+            {
+                bool isTechnologyExist = IsTechnologyExist(technologyID);
+                if (!isTechnologyExist)
+                {
+                    throw new Exception(CMResources.TechnologyIDNotExist);
+                }
+            }
+
+            foreach (int technologyID in technologyIDs)
+            {
+                TaskTechnology taskTechnology = new TaskTechnology();
+                taskTechnology.TaskId = taskID;
+                taskTechnology.TechnologyId = technologyID;
+                dataContext.TaskTechnologies.InsertOnSubmit(taskTechnology);
+                dataContext.SubmitChanges();
+            }
+
+        }
         private bool IsEmployeeExist(int employeeId)
         {
             bool isExist = (from employee in dataContext.Employees

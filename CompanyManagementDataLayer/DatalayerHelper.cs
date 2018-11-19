@@ -121,6 +121,23 @@ namespace CompanyManagementDataLayer
                 return CMResources.AllFieldsPresent;
             }
         }
+        public static string CheckCompulsoryTechnologyTaskUpdateColumn(List<int> technologyIDs, int taskID)
+        {
+
+            if (technologyIDs.Count == 0)
+            {
+                return CMResources.TechnologyIDMissing;
+            }
+            else if (taskID == 0)
+            {
+                return CMResources.TaskIDMissing;
+            }
+            else
+            {
+                return CMResources.AllFieldsPresent;
+            }
+        }
         
+
     }
 }
