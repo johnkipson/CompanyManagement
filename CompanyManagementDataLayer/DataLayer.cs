@@ -108,6 +108,16 @@ namespace CompanyManagementDataLayer
 
             return projectCount;
         }
+        
+        public List<Project> GetAllActiveProjectsManagedByEmployee(int employeeID)
+        {
+            List<Project> projects = (from empProject in dataContext.EmployeeProjects
+                                where empProject.EmployeeId == employeeID && empProject.Project.StatusId == Convert.ToInt32(CMEnum.Status.Active)
+                                select empProject.Project).ToList();
+
+
+            return projects;
+        }
         public void AddProject(Project project)
         {
             string checkCompulsoryFields = CheckCompulsoryProjectColumn(project);
