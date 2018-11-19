@@ -10,7 +10,9 @@ namespace CompanyManagementDataLayer
     {
 
         CMDataClassesDataContext dataContext = new CMDataClassesDataContext();
-       
+
+        public object TaskId { get; private set; }
+
         public List<Project> GetAllProjects()
         {
             List<Project> projects = (from project in dataContext.Projects
@@ -129,7 +131,7 @@ namespace CompanyManagementDataLayer
         }
         public void AddProject(Project project)
         {
-            string checkCompulsoryFields = CheckCompulsoryProjectColumn(project);
+            string checkCompulsoryFields = DataLayerHelper.CheckCompulsoryProjectColumn(project);
             if (checkCompulsoryFields != CMResources.AllFieldsPresent)
             {
                 throw new Exception(checkCompulsoryFields);
@@ -143,7 +145,7 @@ namespace CompanyManagementDataLayer
        
         public void AddTechnology(TechnologyMaster technology)
         {
-            string checkCompulsoryFields = CheckCompulsoryTechnologyColumn(technology);
+            string checkCompulsoryFields = DataLayerHelper.CheckCompulsoryTechnologyColumn(technology);
             if (checkCompulsoryFields != CMResources.AllFieldsPresent)
             {
                 throw new Exception(checkCompulsoryFields);
@@ -155,7 +157,7 @@ namespace CompanyManagementDataLayer
 
         public void AddEmployee(Employee employee)
         {
-            string checkCompulsoryFields = CheckCompulsoryEmployeeColumn(employee);
+            string checkCompulsoryFields = DataLayerHelper.CheckCompulsoryEmployeeColumn(employee);
             if (checkCompulsoryFields != CMResources.AllFieldsPresent)
             {
                 throw new Exception(checkCompulsoryFields);
@@ -167,17 +169,25 @@ namespace CompanyManagementDataLayer
 
         public void AssignEmployeeToProject(int employeeID, int projectID)
         {
-            string checkCompulsoryFields = CheckCompulsoryEmployeeProjectColumn(employeeID, projectID);
+            string checkCompulsoryFields = DataLayerHelper.CheckCompulsoryEmployeeProjectColumn(employeeID, projectID);
             if (checkCompulsoryFields != CMResources.AllFieldsPresent)
             {
                 throw new Exception(checkCompulsoryFields);
             }
 
-            int employeeCount = (from empProject in dataContext.EmployeeProjects
-                                 where empProject.ProjectId == projectID && empProject.EmployeeId == employeeID
-                                 select empProject).Count();
+            bool isEmployeeExist = IsEmployeeExist(employeeID);
+            if (!isEmployeeExist)
+            {
+                throw new Exception(CMResources.EmployeeIDNotExist);
+            }
+            bool isProjectExist = IsProjectExist(projectID);
+            if (!isProjectExist)
+            {
+                throw new Exception(CMResources.ProjectIDNotExist);
+            }
+            bool isEmployeeProjectExist = IsEmployeeProjectExist(projectID, employeeID);
 
-            if (employeeCount > 0)
+            if (!isEmployeeProjectExist)
             {
                 throw new Exception(CMResources.EmployeeAlreadyExistProject);
             }
@@ -188,87 +198,56 @@ namespace CompanyManagementDataLayer
             dataContext.EmployeeProjects.InsertOnSubmit(employeeProject);
             dataContext.SubmitChanges();
         }
-        
-        private string CheckCompulsoryProjectColumn(Project project)
+        public void CreateTaskInProject(Task task, int projectID)
         {
-            if (project.ClientId == 0)
+            string checkCompulsoryFields = DataLayerHelper.CheckCompulsoryProjectTaskColumn(task);
+            if (checkCompulsoryFields != CMResources.AllFieldsPresent)
             {
-                return CMResources.ClientIDMissing;
+                throw new Exception(checkCompulsoryFields);
             }
-            else if (project.DepartmentId == 0)
+            bool isProjectExist = IsProjectExist(projectID);
+            if (!isProjectExist)
             {
-                return CMResources.DepartmentIDMissing;
+                throw new Exception(CMResources.ProjectIDNotExist);
             }
-            else if (project.StatusId == 0)
-            {
-                return CMResources.StatusIDMissing;
-            }
-            else if (string.IsNullOrEmpty(project.ProjectName))
-            {
-                return CMResources.ProjectNameMissing;
-            }
-            else
-            {
-                return CMResources.AllFieldsPresent;
-            }
+            dataContext.Tasks.InsertOnSubmit(task);
+            dataContext.SubmitChanges();
+
+            ProjectTask projectTask = new ProjectTask();
+            projectTask.TaskId = task.TaskId;
+            projectTask.ProjectId = projectID;
+            dataContext.ProjectTasks.InsertOnSubmit(projectTask);
+            dataContext.SubmitChanges();
         }
 
-        private string CheckCompulsoryTechnologyColumn(TechnologyMaster technology)
+        private bool IsEmployeeExist(int employeeId)
         {
-            if (string.IsNullOrEmpty(technology.TechnologyName))
-            {
-                return CMResources.TechnologyNameMissing;
-            }
-            else
-            {
-                return CMResources.AllFieldsPresent;
-            }
-
-        }             
-
-        private string CheckCompulsoryEmployeeColumn(Employee employee)
-        {
-            if (employee.DepartmentId == 0)
-            {
-                return CMResources.DepartmentIDMissing;
-            }
-            else if (employee.DesignationId == 0)
-            {
-                return CMResources.DesignationIDMissing;
-            }
-            else if (employee.AddressId == 0)
-            {
-                return CMResources.AddressIDMissing;
-            }
-            if (string.IsNullOrEmpty(employee.FirstName))
-            {
-                return CMResources.FirstNameMissing;
-            }
-            else if (string.IsNullOrEmpty(employee.LastName))
-            {
-                return CMResources.LastNameMissing;
-            }           
-            else
-            {
-                return CMResources.AllFieldsPresent;
-            }
+            bool isExist = (from employee in dataContext.Employees
+                                 where employee.EmployeeId == employeeId
+                                 select employee).Any();            
+            return isExist;
         }
-               
-        private string CheckCompulsoryEmployeeProjectColumn(int employeeID, int projectID)
+        private bool IsProjectExist(int projectID)
         {
+            bool isExist = (from project in dataContext.Projects
+                            where project.ProjectId == projectID
+                            select project).Any();
+            return isExist;
+        }
+        private bool IsTechnologyExist(int technologyID)
+        {
+            bool isExist = (from technology in dataContext.TechnologyMasters
+                            where technology.TechnologyId == technologyID
+                            select technology).Any();
+            return isExist;
+        }
 
-            if (employeeID == 0)
-            {
-                return CMResources.EmployeeIDMissing;
-            }
-            else if (projectID == 0)
-            {
-                return CMResources.ProjectIDMissing;
-            }
-            else
-            {
-                return CMResources.AllFieldsPresent;
-            }
-        }        
+        private bool IsEmployeeProjectExist(int projectID, int employeeID)
+        {
+            bool isExist = (from empProject in dataContext.EmployeeProjects
+                                 where empProject.ProjectId == projectID && empProject.EmployeeId == employeeID
+                                 select empProject).Any();
+            return isExist;
+        }
     }
 }

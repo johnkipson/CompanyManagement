@@ -25,11 +25,12 @@ namespace CMConsole
             //program.GetAllTechnologiesForEmployee();
             //program.GetProjectCountForEmployee();
             //program.GetAllActiveProjectsManagedByEmployee();
-            program.GetAllDelayedTasksForEmployee();
+            //program.GetAllDelayedTasksForEmployee();
             //program.AddProject();
             //program.AddTechnology();
             //program.AddEmployee();
             //program.AssignEmployeeToProject();
+            program.CreateTaskInProject();
 
 
             Console.Read();
@@ -226,5 +227,22 @@ namespace CMConsole
                 Console.WriteLine(ex.Message);
             }
         }
+        public void CreateTaskInProject()
+        {
+            try
+            {
+                CompanyManagementDataLayer.Task task = new CompanyManagementDataLayer.Task();
+                task.TaskTittle = "ABC";
+                task.StatusId= Convert.ToInt32(CMEnum.Status.Active);
+                int projectID = 1;
+
+                dataLayer.CreateTaskInProject(task, projectID);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        
     }
 }

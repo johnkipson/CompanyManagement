@@ -138,6 +138,9 @@
   <data name="EmployeeIDMissing" xml:space="preserve">
     <value>Employee ID is missing.</value>
   </data>
+  <data name="EmployeeIDNotExist" xml:space="preserve">
+    <value>Employee ID is not exist.</value>
+  </data>
   <data name="FirstNameMissing" xml:space="preserve">
     <value>First Name is missing.</value>
   </data>
@@ -150,6 +153,9 @@
   <data name="ProjectIDMissing" xml:space="preserve">
     <value>Project ID is missing.</value>
   </data>
+  <data name="ProjectIDNotExist" xml:space="preserve">
+    <value>Project ID is not exist.</value>
+  </data>
   <data name="ProjectNameMissing" xml:space="preserve">
     <value>Project Name is missing.</value>
   </data>
@@ -158,6 +164,9 @@
   </data>
   <data name="TaskNameMissing" xml:space="preserve">
     <value>Task Name is Missing.</value>
+  </data>
+  <data name="TechnologyIDNotExist" xml:space="preserve">
+    <value>Technology ID is not exist.</value>
   </data>
   <data name="TechnologyNameMissing" xml:space="preserve">
     <value>Technoloy Name is missing.</value>

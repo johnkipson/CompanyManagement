@@ -124,6 +124,15 @@ namespace CompanyManagementDataLayer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee ID is not exist..
+        /// </summary>
+        internal static string EmployeeIDNotExist {
+            get {
+                return ResourceManager.GetString("EmployeeIDNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name is missing..
         /// </summary>
         internal static string FirstNameMissing {
@@ -160,6 +169,15 @@ namespace CompanyManagementDataLayer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project ID is not exist..
+        /// </summary>
+        internal static string ProjectIDNotExist {
+            get {
+                return ResourceManager.GetString("ProjectIDNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project Name is missing..
         /// </summary>
         internal static string ProjectNameMissing {
@@ -183,6 +201,15 @@ namespace CompanyManagementDataLayer {
         internal static string TaskNameMissing {
             get {
                 return ResourceManager.GetString("TaskNameMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technology ID is not exist..
+        /// </summary>
+        internal static string TechnologyIDNotExist {
+            get {
+                return ResourceManager.GetString("TechnologyIDNotExist", resourceCulture);
             }
         }
         
