@@ -32,7 +32,8 @@ namespace CMConsole
             //program.AssignEmployeeToProject();
             //program.CreateTaskInProject();
             //program.AssignTechnologyToTask();
-            program.UpdateTechnologiesForTask();
+            //program.UpdateTechnologiesForTask();
+            program.DeleteEmployeeFromSystem();
 
 
             Console.Read();
@@ -268,6 +269,20 @@ namespace CMConsole
                 int taskID = 1;
 
                 dataLayer.UpdateTechnologiesForTask(technologyIDs, taskID);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public void DeleteEmployeeFromSystem()
+        {
+            try
+            {
+                
+                int employeeID = 1;
+
+                dataLayer.DeleteEmployeeFromSystem(employeeID);
             }
             catch (Exception ex)
             {

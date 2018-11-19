@@ -292,6 +292,35 @@ namespace CompanyManagementDataLayer
             }
 
         }
+        
+        public void DeleteEmployeeFromSystem(int employeeID)
+        {
+            List<EmployeeProject> employeeProjects = (from employeeProject in dataContext.EmployeeProjects
+                                                      where employeeProject.EmployeeId == employeeID
+                                                      select employeeProject).ToList();
+            if (employeeProjects.Count > 0)
+            {
+                dataContext.EmployeeProjects.DeleteAllOnSubmit(employeeProjects);
+                dataContext.SubmitChanges();
+            }
+            List<EmployeeTask> employeeTasks = (from employeeTask in dataContext.EmployeeTasks
+                                                      where employeeTask.EmployeeId == employeeID
+                                                      select employeeTask).ToList();
+            if (employeeTasks.Count > 0)
+            {
+                dataContext.EmployeeTasks.DeleteAllOnSubmit(employeeTasks);
+                dataContext.SubmitChanges();
+            }
+
+            Employee employee = (from employer in dataContext.Employees
+                                       where employer.EmployeeId == employeeID
+                                       select employer).FirstOrDefault();
+            if (employee != null)
+            {
+                dataContext.Employees.DeleteOnSubmit(employee);
+                dataContext.SubmitChanges();
+            }
+        }
         private bool IsEmployeeExist(int employeeId)
         {
             bool isExist = (from employee in dataContext.Employees
