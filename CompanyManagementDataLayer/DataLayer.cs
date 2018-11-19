@@ -187,7 +187,7 @@ namespace CompanyManagementDataLayer
             }
             bool isEmployeeProjectExist = IsEmployeeProjectExist(projectID, employeeID);
 
-            if (!isEmployeeProjectExist)
+            if (isEmployeeProjectExist)
             {
                 throw new Exception(CMResources.EmployeeAlreadyExistProject);
             }
@@ -219,7 +219,38 @@ namespace CompanyManagementDataLayer
             dataContext.ProjectTasks.InsertOnSubmit(projectTask);
             dataContext.SubmitChanges();
         }
+        public void AssignTechnologyToTask(int technologyID, int taskID)
+        {
+            string checkCompulsoryFields = DataLayerHelper.CheckCompulsoryTechnologyTaskColumn(technologyID, taskID);
+            if (checkCompulsoryFields != CMResources.AllFieldsPresent)
+            {
+                throw new Exception(checkCompulsoryFields);
+            }
 
+            bool isTechnologyExist = IsTechnologyExist(technologyID);
+            if (!isTechnologyExist)
+            {
+                throw new Exception(CMResources.TechnologyIDNotExist);
+            }
+            bool isTaskExist = IsTaskExist(taskID);
+            if (!isTaskExist)
+            {
+                throw new Exception(CMResources.TaskIDNotExist);
+            }
+            bool isTechnologyTaskExist = IsTechnologyTaskExist(technologyID, taskID);
+
+            if (isTechnologyTaskExist)
+            {
+                throw new Exception(CMResources.TechnologyAlreadyExistTask);
+            }
+
+            TaskTechnology taskTechnology = new TaskTechnology();
+            taskTechnology.TaskId = taskID;
+            taskTechnology.TechnologyId = technologyID;
+            dataContext.TaskTechnologies.InsertOnSubmit(taskTechnology);
+            dataContext.SubmitChanges();
+        }
+        
         private bool IsEmployeeExist(int employeeId)
         {
             bool isExist = (from employee in dataContext.Employees
@@ -241,6 +272,13 @@ namespace CompanyManagementDataLayer
                             select technology).Any();
             return isExist;
         }
+        private bool IsTaskExist(int taskID)
+        {
+            bool isExist = (from task in dataContext.Tasks
+                            where task.TaskId == taskID
+                            select task).Any();
+            return isExist;
+        }
 
         private bool IsEmployeeProjectExist(int projectID, int employeeID)
         {
@@ -249,5 +287,13 @@ namespace CompanyManagementDataLayer
                                  select empProject).Any();
             return isExist;
         }
+        private bool IsTechnologyTaskExist(int technologyID, int taskID)
+        {
+            bool isExist = (from taskTechnology in dataContext.TaskTechnologies
+                            where taskTechnology.TechnologyId == technologyID && taskTechnology.TaskId == taskID
+                            select taskTechnology).Any();
+            return isExist;
+        }
+        
     }
 }

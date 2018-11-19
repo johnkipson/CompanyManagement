@@ -30,7 +30,8 @@ namespace CMConsole
             //program.AddTechnology();
             //program.AddEmployee();
             //program.AssignEmployeeToProject();
-            program.CreateTaskInProject();
+            //program.CreateTaskInProject();
+            program.AssignTechnologyToTask();
 
 
             Console.Read();
@@ -243,6 +244,20 @@ namespace CMConsole
                 Console.WriteLine(ex.Message);
             }
         }
-        
+        public void AssignTechnologyToTask()
+        {
+            try
+            {
+                int technologyID = 1;
+                int taskID = 1;
+
+                dataLayer.AssignTechnologyToTask(technologyID, taskID);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
     }
 }

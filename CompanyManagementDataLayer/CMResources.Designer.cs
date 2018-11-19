@@ -196,11 +196,47 @@ namespace CompanyManagementDataLayer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Task ID is missing..
+        /// </summary>
+        internal static string TaskIDMissing {
+            get {
+                return ResourceManager.GetString("TaskIDMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task ID is not exist..
+        /// </summary>
+        internal static string TaskIDNotExist {
+            get {
+                return ResourceManager.GetString("TaskIDNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Task Name is Missing..
         /// </summary>
         internal static string TaskNameMissing {
             get {
                 return ResourceManager.GetString("TaskNameMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technology already assigned this task..
+        /// </summary>
+        internal static string TechnologyAlreadyExistTask {
+            get {
+                return ResourceManager.GetString("TechnologyAlreadyExistTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technology ID is missing..
+        /// </summary>
+        internal static string TechnologyIDMissing {
+            get {
+                return ResourceManager.GetString("TechnologyIDMissing", resourceCulture);
             }
         }
         
