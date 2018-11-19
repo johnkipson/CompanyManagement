@@ -81,6 +81,15 @@ namespace CompanyManagementDataLayer
                                       select projectTechnology.Project).ToList();
             return projects;
         }
+        public List<Task> GetAllActiveTasksForProject(int projectID)
+        {
+            List<Task> tasks = (from projectTask in dataContext.ProjectTasks
+                                 where projectTask.ProjectId == projectID && projectTask.Task.StatusId == Convert.ToInt32(CMEnum.Status.Active)
+                                 select projectTask.Task).ToList();
+
+            
+            return tasks;
+        }
         public void AddProject(Project project)
         {
             string checkCompulsoryFields = CheckCompulsoryProjectColumn(project);

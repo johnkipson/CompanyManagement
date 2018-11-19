@@ -20,7 +20,8 @@ namespace CMConsole
             //program.GetAllEmployeesForProject();
             //program.GetAllTasksForEmployee();
             //program.GetAllTechnologyTasksForEmployee();
-            program.GetAllTechnologyProjects();
+            //program.GetAllTechnologyProjects();
+            program.GetAllActiveTasksForProject();
             //program.AddProject();
             //program.AddTechnology();
             //program.AddEmployee();
@@ -112,6 +113,15 @@ namespace CMConsole
             foreach (Project project in projects)
             {
                 Console.WriteLine("Project Name is : " + project.ProjectName);
+            }
+        }
+        public void GetAllActiveTasksForProject()
+        {
+            int projectID = 1;
+            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllActiveTasksForProject(projectID);
+            foreach (CompanyManagementDataLayer.Task task in tasks)
+            {
+                Console.WriteLine("Active Task Title for this Project Is : " + task.TaskTittle);
             }
         }
         public void AddProject()
