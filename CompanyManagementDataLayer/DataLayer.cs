@@ -33,12 +33,12 @@ namespace CompanyManagementDataLayer
             return employeeCount;
         }
 
-        public List<EmployeeProject> GetAllEmployeesForProjects(int projectID)
+        public List<Employee> GetAllEmployeesForProjects(int projectID)
         {
-            List<EmployeeProject> employeeProjects = (from empProject in dataContext.EmployeeProjects
+            List<Employee> employees = (from empProject in dataContext.EmployeeProjects
                                                       where empProject.ProjectId == projectID
-                                                      select empProject).ToList();
-            return employeeProjects;
+                                                      select empProject.Employee).ToList();
+            return employees;
         }
         public List<Project> GetAllDelayedProjects()
         {
@@ -49,10 +49,10 @@ namespace CompanyManagementDataLayer
         }
         public List<Project> GetAllProjectsForEmployees(int employeeID)
         {
-            List<Project> employeeProjects = (from empProject in dataContext.EmployeeProjects
+            List<Project> projects = (from empProject in dataContext.EmployeeProjects
                                              where empProject.EmployeeId == employeeID
                                                       select empProject.Project).ToList();
-            return employeeProjects;
+            return projects;
         }
        public void AddProject(Project project)
         {

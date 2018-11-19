@@ -59,10 +59,10 @@ namespace CMConsole
         public void GetAllEmployeesForProject()
         {
             int projectID = 1;
-            List<EmployeeProject> employeeProjects = dataLayer.GetAllEmployeesForProjects(projectID);
-            foreach (EmployeeProject employeeProject in employeeProjects)
+            List<Employee> employees = dataLayer.GetAllEmployeesForProjects(projectID);
+            foreach (Employee employee in employees)
             {
-                Console.WriteLine("Employee Name is : " + employeeProject.Employee.FirstName);
+                Console.WriteLine("Employee Name is : " +employee.FirstName);
             }
         }
         public void GetAllDelayedProjects()
