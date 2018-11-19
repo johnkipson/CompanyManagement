@@ -22,7 +22,8 @@ namespace CMConsole
             //program.GetAllTechnologyTasksForEmployee();
             //program.GetAllTechnologyProjects();
             //program.GetAllActiveTasksForProject();
-            program.GetAllTechnologiesForEmployee();
+            //program.GetAllTechnologiesForEmployee();
+            program.GetProjectCountForEmployee();
             //program.AddProject();
             //program.AddTechnology();
             //program.AddEmployee();
@@ -134,7 +135,12 @@ namespace CMConsole
                 Console.WriteLine("Technology Skills for this Employee is : " + technology.TechnologyName);
             }
         }
-        
+        public void GetProjectCountForEmployee()
+        {
+            int employeeID = 1;
+            int projectCount = dataLayer.GetProjectCountForEmployee(employeeID);
+            Console.WriteLine("Project Count for Employee" + projectCount);
+        }
         public void AddProject()
         {
             try

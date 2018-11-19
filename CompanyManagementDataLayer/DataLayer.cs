@@ -100,6 +100,14 @@ namespace CompanyManagementDataLayer
                                     select projectTechnology.TechnologyMaster).ToList();
             return technologies;
         }
+        public int GetProjectCountForEmployee(int employeeID)
+        {
+            int projectCount = (from empProject in dataContext.EmployeeProjects
+                                 where empProject.EmployeeId == employeeID
+                                 select empProject).Count();
+
+            return projectCount;
+        }
         public void AddProject(Project project)
         {
             string checkCompulsoryFields = CheckCompulsoryProjectColumn(project);
