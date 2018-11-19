@@ -118,6 +118,15 @@ namespace CompanyManagementDataLayer
 
             return projects;
         }
+        public List<Task> GetAllDelayedTasksForEmployee(int employeeID)
+        {
+            List<Task> tasks = (from empTask in dataContext.EmployeeTasks
+                                      where empTask.EmployeeId == employeeID && empTask.Task.StatusId == Convert.ToInt32(CMEnum.Status.Delayed)
+                                      select empTask.Task).ToList();
+
+
+            return tasks;
+        }
         public void AddProject(Project project)
         {
             string checkCompulsoryFields = CheckCompulsoryProjectColumn(project);

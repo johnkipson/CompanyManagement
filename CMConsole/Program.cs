@@ -24,7 +24,8 @@ namespace CMConsole
             //program.GetAllActiveTasksForProject();
             //program.GetAllTechnologiesForEmployee();
             //program.GetProjectCountForEmployee();
-            program.GetAllActiveProjectsManagedByEmployee();
+            //program.GetAllActiveProjectsManagedByEmployee();
+            program.GetAllDelayedTasksForEmployee();
             //program.AddProject();
             //program.AddTechnology();
             //program.AddEmployee();
@@ -152,6 +153,15 @@ namespace CMConsole
             }
         }
         
+        public void GetAllDelayedTasksForEmployee()
+        {
+            int employeeID = 1;
+            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllDelayedTasksForEmployee(employeeID);
+            foreach (CompanyManagementDataLayer.Task task in tasks)
+            {
+                Console.WriteLine("Delayed Task Title for this Employee is : " + task.TaskTittle);
+            }
+        }
         public void AddProject()
         {
             try
