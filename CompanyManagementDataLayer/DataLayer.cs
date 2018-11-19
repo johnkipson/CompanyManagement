@@ -54,7 +54,15 @@ namespace CompanyManagementDataLayer
                                                       select empProject.Project).ToList();
             return projects;
         }
-       public void AddProject(Project project)
+        
+        public List<Task> GetAllTasksForEmployee(int employeeID)
+        {
+            List<Task> tasks = (from empTask in dataContext.EmployeeTasks
+                                      where empTask.EmployeeId == employeeID
+                                      select empTask.Task).ToList();
+            return tasks;
+        }
+        public void AddProject(Project project)
         {
             string checkCompulsoryFields = CheckCompulsoryProjectColumn(project);
             if (checkCompulsoryFields != CMResources.AllFieldsPresent)

@@ -18,10 +18,12 @@ namespace CMConsole
             //program.GetAllTechnologies();
             //program.GetEmployeeCountForProject();
             //program.GetAllEmployeesForProject();
+            program.GetAllTasksForEmployee();
             //program.AddProject();
             //program.AddTechnology();
             //program.AddEmployee();
-            program.AssignEmployeeToProject();
+            //program.AssignEmployeeToProject();
+
 
             Console.Read();
         }
@@ -76,12 +78,22 @@ namespace CMConsole
         public void GetAllProjectsForEmployee()
         {
             int employeeID = 1;
-            List<Project> employeeProjects = dataLayer.GetAllProjectsForEmployees(employeeID);
-            foreach (Project project in employeeProjects)
+            List<Project> projects = dataLayer.GetAllProjectsForEmployees(employeeID);
+            foreach (Project project in projects)
             {
                 Console.WriteLine("Project Name is : " + project.ProjectName);
             }
         }
+        public void GetAllTasksForEmployee()
+        {
+            int employeeID = 1;
+            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTasksForEmployee(employeeID);
+            foreach (CompanyManagementDataLayer.Task task in tasks)
+            {
+                Console.WriteLine("Task Title is : " + task.TaskTittle);
+            }
+        }
+   
         public void AddProject()
         {
             try
