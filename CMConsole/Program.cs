@@ -18,7 +18,8 @@ namespace CMConsole
             //program.GetAllTechnologies();
             //program.GetEmployeeCountForProject();
             //program.GetAllEmployeesForProject();
-            program.GetAllTasksForEmployee();
+            //program.GetAllTasksForEmployee();
+            program.GetAllTechnologyTasksForEmployee();
             //program.AddProject();
             //program.AddTechnology();
             //program.AddEmployee();
