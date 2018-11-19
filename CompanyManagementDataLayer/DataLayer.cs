@@ -349,6 +349,43 @@ namespace CompanyManagementDataLayer
                 dataContext.SubmitChanges();
             }
         }
+        public void DeleteTask(int taskID)
+        {
+            List<EmployeeTask> employeeTasks = (from employeeTask in dataContext.EmployeeTasks
+                                                           where employeeTask.TaskId == taskID
+                                                select employeeTask).ToList();
+            if (employeeTasks.Count > 0)
+            {
+                dataContext.EmployeeTasks.DeleteAllOnSubmit(employeeTasks);
+                dataContext.SubmitChanges();
+            }
+            List<ProjectTask> projectTasks = (from projectTask in dataContext.ProjectTasks
+                                                   where projectTask.TaskId == taskID
+                                              select projectTask).ToList();
+            if (projectTasks.Count > 0)
+            {
+                dataContext.ProjectTasks.DeleteAllOnSubmit(projectTasks);
+                dataContext.SubmitChanges();
+            }
+            List<TaskTechnology> taskTechnologies = (from taskTechnology in dataContext.TaskTechnologies
+                                              where taskTechnology.TaskId == taskID
+                                              select taskTechnology).ToList();
+            if (taskTechnologies.Count > 0)
+            {
+                dataContext.TaskTechnologies.DeleteAllOnSubmit(taskTechnologies);
+                dataContext.SubmitChanges();
+            }
+
+            Task tasks = (from task in dataContext.Tasks
+                                           where task.TaskId == taskID
+                                           select task).FirstOrDefault();
+            if (tasks != null)
+            {
+                dataContext.Tasks.DeleteOnSubmit(tasks);
+                dataContext.SubmitChanges();
+            }
+        }
+        
         private bool IsEmployeeExist(int employeeId)
         {
             bool isExist = (from employee in dataContext.Employees
