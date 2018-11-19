@@ -321,6 +321,34 @@ namespace CompanyManagementDataLayer
                 dataContext.SubmitChanges();
             }
         }
+        public void DeleteTechnology(int technologyID)
+        {
+            List<ProjectTechnology> projectTechnologies = (from projectTech in dataContext.ProjectTechnologies
+                                                      where projectTech.TechnologyId == technologyID
+                                                         select projectTech).ToList();
+            if (projectTechnologies.Count > 0)
+            {
+                dataContext.ProjectTechnologies.DeleteAllOnSubmit(projectTechnologies);
+                dataContext.SubmitChanges();
+            }
+            List<TaskTechnology> taskTechnology = (from taskTech in dataContext.TaskTechnologies
+                                                where taskTech.TechnologyId == technologyID
+                                                   select taskTech).ToList();
+            if (taskTechnology.Count > 0)
+            {
+                dataContext.TaskTechnologies.DeleteAllOnSubmit(taskTechnology);
+                dataContext.SubmitChanges();
+            }
+
+            TechnologyMaster technology = (from tech in dataContext.TechnologyMasters
+                                 where tech.TechnologyId == technologyID
+                                 select tech).FirstOrDefault();
+            if (technology != null)
+            {
+                dataContext.TechnologyMasters.DeleteOnSubmit(technology);
+                dataContext.SubmitChanges();
+            }
+        }
         private bool IsEmployeeExist(int employeeId)
         {
             bool isExist = (from employee in dataContext.Employees
