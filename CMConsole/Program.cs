@@ -21,7 +21,8 @@ namespace CMConsole
             //program.GetAllTasksForEmployee();
             //program.GetAllTechnologyTasksForEmployee();
             //program.GetAllTechnologyProjects();
-            program.GetAllActiveTasksForProject();
+            //program.GetAllActiveTasksForProject();
+            program.GetAllTechnologiesForEmployee();
             //program.AddProject();
             //program.AddTechnology();
             //program.AddEmployee();
@@ -124,6 +125,16 @@ namespace CMConsole
                 Console.WriteLine("Active Task Title for this Project Is : " + task.TaskTittle);
             }
         }
+        public void GetAllTechnologiesForEmployee()
+        {
+            int employeeID = 1;
+            List<TechnologyMaster> technologies = dataLayer.GetAllTechnologiesForEmployee(employeeID);
+            foreach (TechnologyMaster technology in technologies)
+            {
+                Console.WriteLine("Technology Skills for this Employee is : " + technology.TechnologyName);
+            }
+        }
+        
         public void AddProject()
         {
             try
