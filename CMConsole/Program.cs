@@ -93,7 +93,18 @@ namespace CMConsole
                 Console.WriteLine("Task Title is : " + task.TaskTittle);
             }
         }
-   
+        public void GetAllTechnologyTasksForEmployee()
+        {
+            int technologyID = 1;
+            int employeeID = 1;
+            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTechnologyTasksForEmployee(technologyID,employeeID);
+            foreach (CompanyManagementDataLayer.Task task in tasks)
+            {
+                Console.WriteLine("Task Title is : " + task.TaskTittle);
+            }
+        }
+
+
         public void AddProject()
         {
             try

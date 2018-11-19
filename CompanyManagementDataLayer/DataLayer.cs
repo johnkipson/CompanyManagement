@@ -62,6 +62,19 @@ namespace CompanyManagementDataLayer
                                       select empTask.Task).ToList();
             return tasks;
         }
+        public List<Task> GetAllTechnologyTasksForEmployee(int technologyID,int employeeID)
+        {
+            List<int> taskIds = (from empTask in dataContext.EmployeeTasks
+                                where empTask.EmployeeId == employeeID
+                                select empTask.TaskId).ToList();
+           
+            List<Task> tasks = (from taskTechnology in dataContext.TaskTechnologies
+                                               where taskIds.Contains(taskTechnology.TaskId) && taskTechnology.TechnologyId== technologyID
+                                    select taskTechnology.Task).ToList();
+            return tasks;
+            
+        }
+        
         public void AddProject(Project project)
         {
             string checkCompulsoryFields = CheckCompulsoryProjectColumn(project);
