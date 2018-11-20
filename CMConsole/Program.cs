@@ -46,128 +46,229 @@ namespace CMConsole
 
         public void GetAllProjects()
         {
-            List<Project> projects = dataLayer.GetAllProjects();
-
-            foreach (Project project in projects)
+            try
             {
-                Console.WriteLine("Project Name is : " + project.ProjectName);
+                List<Project> projects = dataLayer.GetAllProjects();
+
+                foreach (Project project in projects)
+                {
+                    Console.WriteLine("Project Name is : " + project.ProjectName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
 
         }
         public void GetAllTechnologies()
         {
-            List<TechnologyMaster> technologies = dataLayer.GetAllTechnologies();
-            foreach (TechnologyMaster technology in technologies)
+            try
             {
-                Console.WriteLine("Technology Name is : " + technology.TechnologyName);
+                List<TechnologyMaster> technologies = dataLayer.GetAllTechnologies();
+                foreach (TechnologyMaster technology in technologies)
+                {
+                    Console.WriteLine("Technology Name is : " + technology.TechnologyName);
+                }
             }
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
         }
         public void GetEmployeeCountForProject()
         {
-            int projectID = 1;
-            int employeeCount = dataLayer.GetEmployeeCountForProject(projectID);
-            Console.WriteLine("Employee Count" + employeeCount);
+            try
+            {
+                int projectID = 1;
+                int employeeCount = dataLayer.GetEmployeeCountForProject(projectID);
+                Console.WriteLine("Employee Count" + employeeCount);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
         }
         public void GetAllEmployeesForProject()
         {
-            int projectID = 1;
-            List<Employee> employees = dataLayer.GetAllEmployeesForProjects(projectID);
-            foreach (Employee employee in employees)
+            try
             {
-                Console.WriteLine("Employee Name is : " + employee.FirstName);
+                int projectID = 1;
+                List<Employee> employees = dataLayer.GetAllEmployeesForProjects(projectID);
+                foreach (Employee employee in employees)
+                {
+                    Console.WriteLine("Employee Name is : " + employee.FirstName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void GetAllDelayedProjects()
         {
-            List<Project> projects = dataLayer.GetAllDelayedProjects();
-            foreach (Project project in projects)
+            try
             {
-                Console.WriteLine("Delayed Project Name is : " + project.ProjectName);
+                List<Project> projects = dataLayer.GetAllDelayedProjects();
+                foreach (Project project in projects)
+                {
+                    Console.WriteLine("Delayed Project Name is : " + project.ProjectName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void GetAllProjectsForEmployee()
         {
-            int employeeID = 1;
-            List<Project> projects = dataLayer.GetAllProjectsForEmployees(employeeID);
-            foreach (Project project in projects)
+            try
             {
-                Console.WriteLine("Project Name is : " + project.ProjectName);
+                int employeeID = 1;
+                List<Project> projects = dataLayer.GetAllProjectsForEmployees(employeeID);
+                foreach (Project project in projects)
+                {
+                    Console.WriteLine("Project Name is : " + project.ProjectName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void GetAllTasksForEmployee()
         {
-            int employeeID = 1;
-            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTasksForEmployee(employeeID);
-            foreach (CompanyManagementDataLayer.Task task in tasks)
+            try
             {
-                Console.WriteLine("Task Title is : " + task.TaskTittle);
+                int employeeID = 1;
+                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTasksForEmployee(employeeID);
+                foreach (CompanyManagementDataLayer.Task task in tasks)
+                {
+                    Console.WriteLine("Task Title is : " + task.TaskTittle);
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
         public void GetAllTechnologyTasksForEmployee()
         {
-            int technologyID = 1;
-            int employeeID = 1;
-            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTechnologyTasksForEmployee(technologyID, employeeID);
-            foreach (CompanyManagementDataLayer.Task task in tasks)
+            try
             {
-                Console.WriteLine("Task Title is : " + task.TaskTittle);
+                int technologyID = 1;
+                int employeeID = 1;
+                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTechnologyTasksForEmployee(technologyID, employeeID);
+                foreach (CompanyManagementDataLayer.Task task in tasks)
+                {
+                    Console.WriteLine("Task Title is : " + task.TaskTittle);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void GetAllTechnologyProjects()
         {
-            int technologyID = 1;
-            List<Project> projects = dataLayer.GetAllTechnologyProjects(technologyID);
-            foreach (Project project in projects)
+            try
             {
-                Console.WriteLine("Project Name is : " + project.ProjectName);
+                int technologyID = 1;
+                List<Project> projects = dataLayer.GetAllTechnologyProjects(technologyID);
+                foreach (Project project in projects)
+                {
+                    Console.WriteLine("Project Name is : " + project.ProjectName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void GetAllActiveTasksForProject()
         {
-            int projectID = 1;
-            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllActiveTasksForProject(projectID);
-            foreach (CompanyManagementDataLayer.Task task in tasks)
+            try
             {
-                Console.WriteLine("Active Task Title for this Project Is : " + task.TaskTittle);
+                int projectID = 1;
+                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllActiveTasksForProject(projectID);
+                foreach (CompanyManagementDataLayer.Task task in tasks)
+                {
+                    Console.WriteLine("Active Task Title for this Project Is : " + task.TaskTittle);
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
         public void GetAllTechnologiesForEmployee()
         {
-            int employeeID = 1;
-            List<TechnologyMaster> technologies = dataLayer.GetAllTechnologiesForEmployee(employeeID);
-            foreach (TechnologyMaster technology in technologies)
+            try
             {
-                Console.WriteLine("Technology Skills for this Employee is : " + technology.TechnologyName);
+                int employeeID = 1;
+                List<TechnologyMaster> technologies = dataLayer.GetAllTechnologiesForEmployee(employeeID);
+                foreach (TechnologyMaster technology in technologies)
+                {
+                    Console.WriteLine("Technology Skills for this Employee is : " + technology.TechnologyName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void GetProjectCountForEmployee()
         {
-            int employeeID = 1;
-            int projectCount = dataLayer.GetProjectCountForEmployee(employeeID);
-            Console.WriteLine("Project Count for Employee" + projectCount);
+            try
+            {
+                int employeeID = 1;
+                int projectCount = dataLayer.GetProjectCountForEmployee(employeeID);
+                Console.WriteLine("Project Count for Employee" + projectCount);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
         public void GetAllActiveProjectsManagedByEmployee()
         {
-            int employeeID = 1;
-            List<Project> projects = dataLayer.GetAllActiveProjectsManagedByEmployee(employeeID);
-            foreach (Project project in projects)
+            try
             {
-                Console.WriteLine("Project Name is : " + project.ProjectName);
+                int employeeID = 1;
+                List<Project> projects = dataLayer.GetAllActiveProjectsManagedByEmployee(employeeID);
+                foreach (Project project in projects)
+                {
+                    Console.WriteLine("Project Name is : " + project.ProjectName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
         public void GetAllDelayedTasksForEmployee()
         {
-            int employeeID = 1;
-            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllDelayedTasksForEmployee(employeeID);
-            foreach (CompanyManagementDataLayer.Task task in tasks)
+            try
             {
-                Console.WriteLine("Delayed Task Title for this Employee is : " + task.TaskTittle);
+                int employeeID = 1;
+                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllDelayedTasksForEmployee(employeeID);
+                foreach (CompanyManagementDataLayer.Task task in tasks)
+                {
+                    Console.WriteLine("Delayed Task Title for this Employee is : " + task.TaskTittle);
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
         public void AddProject()
         {
@@ -263,12 +364,12 @@ namespace CMConsole
                 Console.WriteLine(ex.Message);
             }
         }
-        
+
         public void UpdateTechnologiesForTask()
         {
             try
             {
-                List<int> technologyIDs = new List<int>() {1,2,3};
+                List<int> technologyIDs = new List<int>() { 1, 2, 3 };
                 int taskID = 1;
 
                 dataLayer.UpdateTechnologiesForTask(technologyIDs, taskID);
@@ -281,7 +382,7 @@ namespace CMConsole
         public void DeleteEmployeeFromSystem()
         {
             try
-            {                
+            {
                 int employeeID = 1;
                 dataLayer.DeleteEmployeeFromSystem(employeeID);
             }
@@ -326,7 +427,5 @@ namespace CMConsole
                 Console.WriteLine(ex.Message);
             }
         }
-
-
     }
 }
