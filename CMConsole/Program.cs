@@ -1,4 +1,5 @@
-﻿using CompanyManagementDataLayer;
+﻿using CompanyManagementBusinessLayer;
+using CompanyManagementBusinessLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace CMConsole
     class Program
     {
 
-        DataLayer dataLayer = new DataLayer();
+       BusinessLayer businessLayer = new BusinessLayer();
         static void Main(string[] args)
         {
             Program program = new Program();
-            //program.GetAllProjects();
+            program.GetAllProjects();
             //program.GetAllTechnologies();
             //program.GetEmployeeCountForProject();
             //program.GetAllEmployeesForProject();
@@ -36,7 +37,7 @@ namespace CMConsole
             //program.DeleteEmployeeFromSystem();
             //program.DeleteTechnology();
             //program.DeleteTask();
-            program.DeleteProject();
+            //program.DeleteProject();
 
 
             Console.Read();
@@ -48,9 +49,10 @@ namespace CMConsole
         {
             try
             {
-                List<Project> projects = dataLayer.GetAllProjects();
+             
+                List<BOProject> projects  = businessLayer.GetAllProjects();
 
-                foreach (Project project in projects)
+                foreach (BOProject project in projects)
                 {
                     Console.WriteLine("Project Name is : " + project.ProjectName);
                 }
@@ -66,8 +68,8 @@ namespace CMConsole
         {
             try
             {
-                List<TechnologyMaster> technologies = dataLayer.GetAllTechnologies();
-                foreach (TechnologyMaster technology in technologies)
+                List<BOTechnology> technologies = businessLayer.GetAllTechnologies();
+                foreach (BOTechnology technology in technologies)
                 {
                     Console.WriteLine("Technology Name is : " + technology.TechnologyName);
                 }
@@ -83,7 +85,7 @@ namespace CMConsole
             try
             {
                 int projectID = 1;
-                int employeeCount = dataLayer.GetEmployeeCountForProject(projectID);
+                int employeeCount = businessLayer.GetEmployeeCountForProject(projectID);
                 Console.WriteLine("Employee Count" + employeeCount);
             }
             catch (Exception ex)
@@ -97,8 +99,8 @@ namespace CMConsole
             try
             {
                 int projectID = 1;
-                List<Employee> employees = dataLayer.GetAllEmployeesForProjects(projectID);
-                foreach (Employee employee in employees)
+                List<BOEmployee> employees = businessLayer.GetAllEmployeesForProjects(projectID);
+                foreach (BOEmployee employee in employees)
                 {
                     Console.WriteLine("Employee Name is : " + employee.FirstName);
                 }
@@ -112,8 +114,8 @@ namespace CMConsole
         {
             try
             {
-                List<Project> projects = dataLayer.GetAllDelayedProjects();
-                foreach (Project project in projects)
+                List<BOProject> projects = businessLayer.GetAllDelayedProjects();
+                foreach (BOProject project in projects)
                 {
                     Console.WriteLine("Delayed Project Name is : " + project.ProjectName);
                 }
@@ -128,8 +130,8 @@ namespace CMConsole
             try
             {
                 int employeeID = 1;
-                List<Project> projects = dataLayer.GetAllProjectsForEmployees(employeeID);
-                foreach (Project project in projects)
+                List<BOProject> projects = businessLayer.GetAllProjectsForEmployees(employeeID);
+                foreach (BOProject project in projects)
                 {
                     Console.WriteLine("Project Name is : " + project.ProjectName);
                 }
@@ -144,8 +146,8 @@ namespace CMConsole
             try
             {
                 int employeeID = 1;
-                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTasksForEmployee(employeeID);
-                foreach (CompanyManagementDataLayer.Task task in tasks)
+                List<BOTask> tasks = businessLayer.GetAllTasksForEmployee(employeeID);
+                foreach (BOTask task in tasks)
                 {
                     Console.WriteLine("Task Title is : " + task.TaskTittle);
                 }
@@ -162,8 +164,8 @@ namespace CMConsole
             {
                 int technologyID = 1;
                 int employeeID = 1;
-                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTechnologyTasksForEmployee(technologyID, employeeID);
-                foreach (CompanyManagementDataLayer.Task task in tasks)
+                List<BOTask> tasks = businessLayer.GetAllTechnologyTasksForEmployee(technologyID, employeeID);
+                foreach (BOTask task in tasks)
                 {
                     Console.WriteLine("Task Title is : " + task.TaskTittle);
                 }
@@ -178,8 +180,8 @@ namespace CMConsole
             try
             {
                 int technologyID = 1;
-                List<Project> projects = dataLayer.GetAllTechnologyProjects(technologyID);
-                foreach (Project project in projects)
+                List<BOProject> projects = businessLayer.GetAllTechnologyProjects(technologyID);
+                foreach (BOProject project in projects)
                 {
                     Console.WriteLine("Project Name is : " + project.ProjectName);
                 }
@@ -194,8 +196,8 @@ namespace CMConsole
             try
             {
                 int projectID = 1;
-                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllActiveTasksForProject(projectID);
-                foreach (CompanyManagementDataLayer.Task task in tasks)
+                List<BOTask> tasks = businessLayer.GetAllActiveTasksForProject(projectID);
+                foreach (BOTask task in tasks)
                 {
                     Console.WriteLine("Active Task Title for this Project Is : " + task.TaskTittle);
                 }
@@ -211,8 +213,8 @@ namespace CMConsole
             try
             {
                 int employeeID = 1;
-                List<TechnologyMaster> technologies = dataLayer.GetAllTechnologiesForEmployee(employeeID);
-                foreach (TechnologyMaster technology in technologies)
+                List<BOTechnology> technologies = businessLayer.GetAllTechnologiesForEmployee(employeeID);
+                foreach (BOTechnology technology in technologies)
                 {
                     Console.WriteLine("Technology Skills for this Employee is : " + technology.TechnologyName);
                 }
@@ -227,7 +229,7 @@ namespace CMConsole
             try
             {
                 int employeeID = 1;
-                int projectCount = dataLayer.GetProjectCountForEmployee(employeeID);
+                int projectCount = businessLayer.GetProjectCountForEmployee(employeeID);
                 Console.WriteLine("Project Count for Employee" + projectCount);
             }
             catch (Exception ex)
@@ -241,8 +243,8 @@ namespace CMConsole
             try
             {
                 int employeeID = 1;
-                List<Project> projects = dataLayer.GetAllActiveProjectsManagedByEmployee(employeeID);
-                foreach (Project project in projects)
+                List<BOProject> projects = businessLayer.GetAllActiveProjectsManagedByEmployee(employeeID);
+                foreach (BOProject project in projects)
                 {
                     Console.WriteLine("Project Name is : " + project.ProjectName);
                 }
@@ -258,8 +260,8 @@ namespace CMConsole
             try
             {
                 int employeeID = 1;
-                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllDelayedTasksForEmployee(employeeID);
-                foreach (CompanyManagementDataLayer.Task task in tasks)
+                List<BOTask> tasks = businessLayer.GetAllDelayedTasksForEmployee(employeeID);
+                foreach (BOTask task in tasks)
                 {
                     Console.WriteLine("Delayed Task Title for this Employee is : " + task.TaskTittle);
                 }
@@ -274,14 +276,14 @@ namespace CMConsole
         {
             try
             {
-                Project project = new Project();
-                project.ClientId = 1;
-                project.DepartmentId = 1;
-                project.StatusId = Convert.ToInt32(CMEnum.Status.Active);
-                project.ProjectName = ".Java";
-                project.StartDate = DateTime.Now;
+                BOProject boProject = new BOProject();
+                boProject.ClientId = 1;
+                boProject.DepartmentId = 1;
+                boProject.StatusId = Convert.ToInt32(CMEnum.Status.Active);
+                boProject.ProjectName = ".Java";
+                boProject.StartDate = DateTime.Now;
 
-                dataLayer.AddProject(project);
+                businessLayer.AddProject(boProject);
             }
             catch (Exception ex)
             {
@@ -292,10 +294,10 @@ namespace CMConsole
         {
             try
             {
-                TechnologyMaster technology = new TechnologyMaster();
-                technology.TechnologyName = "C#";
+                BOTechnology boTechnology = new BOTechnology();
+                boTechnology.TechnologyName = "C#";
 
-                dataLayer.AddTechnology(technology);
+                businessLayer.AddTechnology(boTechnology);
             }
             catch (Exception ex)
             {
@@ -306,13 +308,13 @@ namespace CMConsole
         {
             try
             {
-                Employee employee = new Employee();
-                employee.DepartmentId = 1;
-                employee.DesignationId = Convert.ToInt32(CMEnum.Designation.DepartmentHead);
-                employee.AddressId = 3;
-                employee.FirstName = "John";
-                employee.LastName = "kipson";
-                dataLayer.AddEmployee(employee);
+                BOEmployee boEmployee = new BOEmployee();
+                boEmployee.DepartmentId = 1;
+                boEmployee.DesignationId = Convert.ToInt32(CMEnum.Designation.DepartmentHead);
+                boEmployee.AddressId = 3;
+                boEmployee.FirstName = "John";
+                boEmployee.LastName = "kipson";
+                businessLayer.AddEmployee(boEmployee);
             }
             catch (Exception ex)
             {
@@ -327,7 +329,7 @@ namespace CMConsole
                 int employeeID = 1;
                 int projectID = 1;
 
-                dataLayer.AssignEmployeeToProject(employeeID, projectID);
+                businessLayer.AssignEmployeeToProject(employeeID, projectID);
             }
             catch (Exception ex)
             {
@@ -338,12 +340,12 @@ namespace CMConsole
         {
             try
             {
-                CompanyManagementDataLayer.Task task = new CompanyManagementDataLayer.Task();
+                BOTask task = new BOTask();
                 task.TaskTittle = "ABC";
                 task.StatusId = Convert.ToInt32(CMEnum.Status.Active);
                 int projectID = 1;
 
-                dataLayer.CreateTaskInProject(task, projectID);
+                businessLayer.CreateTaskInProject(task, projectID);
             }
             catch (Exception ex)
             {
@@ -357,7 +359,7 @@ namespace CMConsole
                 int technologyID = 1;
                 int taskID = 1;
 
-                dataLayer.AssignTechnologyToTask(technologyID, taskID);
+                businessLayer.AssignTechnologyToTask(technologyID, taskID);
             }
             catch (Exception ex)
             {
@@ -372,7 +374,7 @@ namespace CMConsole
                 List<int> technologyIDs = new List<int>() { 1, 2, 3 };
                 int taskID = 1;
 
-                dataLayer.UpdateTechnologiesForTask(technologyIDs, taskID);
+                businessLayer.UpdateTechnologiesForTask(technologyIDs, taskID);
             }
             catch (Exception ex)
             {
@@ -384,7 +386,7 @@ namespace CMConsole
             try
             {
                 int employeeID = 1;
-                dataLayer.DeleteEmployeeFromSystem(employeeID);
+                businessLayer.DeleteEmployeeFromSystem(employeeID);
             }
             catch (Exception ex)
             {
@@ -396,7 +398,7 @@ namespace CMConsole
             try
             {
                 int technologyID = 1;
-                dataLayer.DeleteTechnology(technologyID);
+                businessLayer.DeleteTechnology(technologyID);
             }
             catch (Exception ex)
             {
@@ -408,7 +410,7 @@ namespace CMConsole
             try
             {
                 int taskID = 1;
-                dataLayer.DeleteTask(taskID);
+                businessLayer.DeleteTask(taskID);
             }
             catch (Exception ex)
             {
@@ -420,7 +422,7 @@ namespace CMConsole
             try
             {
                 int projectID = 1;
-                dataLayer.DeleteProject(projectID);
+                businessLayer.DeleteProject(projectID);
             }
             catch (Exception ex)
             {

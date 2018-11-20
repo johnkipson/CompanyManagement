@@ -1,0 +1,7 @@
+D:\John\CompanyManagement\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+D:\John\CompanyManagement\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+D:\John\CompanyManagement\ClassLibrary1\obj\Debug\CompanyManagementBusinessLayer.csprojResolveAssemblyReference.cache
+D:\John\CompanyManagement\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+D:\John\CompanyManagement\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+D:\John\CompanyManagement\ClassLibrary1\bin\Debug\CompanyManagementDataLayer.dll
+D:\John\CompanyManagement\ClassLibrary1\bin\Debug\CompanyManagementDataLayer.pdb

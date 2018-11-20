@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CompanyManagementDataLayer\CompanyManagementDataLayer.csproj">
-      <Project>{6d17a969-eb89-4ac0-932c-21e2e2c62ae9}</Project>
-      <Name>CompanyManagementDataLayer</Name>
+    <ProjectReference Include="..\ClassLibrary1\CompanyManagementBusinessLayer.csproj">
+      <Project>{174988ac-68fb-4a84-a2bd-cf726363a110}</Project>
+      <Name>CompanyManagementBusinessLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

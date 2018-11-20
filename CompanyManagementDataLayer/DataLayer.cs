@@ -70,12 +70,12 @@ namespace CompanyManagementDataLayer
                 throw ex;
             }
         }
-        public List<Project> GetAllDelayedProjects()
+        public List<Project> GetAllDelayedProjects(int delayedStatus)
         {
             try
             {
                 List<Project> delayedProjects = (from project in dataContext.Projects
-                                                 where project.StatusId == Convert.ToInt32(CMEnum.Status.Delayed)
+                                                 where project.StatusId == delayedStatus
                                                  select project).ToList();
                 return delayedProjects;
             }
@@ -149,12 +149,12 @@ namespace CompanyManagementDataLayer
             }
 
         }
-        public List<Task> GetAllActiveTasksForProject(int projectID)
+        public List<Task> GetAllActiveTasksForProject(int projectID, int activeStatus)
         {
             try
             {
                 List<Task> tasks = (from projectTask in dataContext.ProjectTasks
-                                    where projectTask.ProjectId == projectID && projectTask.Task.StatusId == Convert.ToInt32(CMEnum.Status.Active)
+                                    where projectTask.ProjectId == projectID && projectTask.Task.StatusId == activeStatus
                                     select projectTask.Task).ToList();
                 return tasks;
             }
@@ -199,12 +199,12 @@ namespace CompanyManagementDataLayer
 
         }
 
-        public List<Project> GetAllActiveProjectsManagedByEmployee(int employeeID)
+        public List<Project> GetAllActiveProjectsManagedByEmployee(int employeeID, int activeStatus)
         {
             try
             {
                 List<Project> projects = (from empProject in dataContext.EmployeeProjects
-                                          where empProject.EmployeeId == employeeID && empProject.Project.StatusId == Convert.ToInt32(CMEnum.Status.Active)
+                                          where empProject.EmployeeId == employeeID && empProject.Project.StatusId == activeStatus
                                           select empProject.Project).ToList();
 
                 return projects;
@@ -215,12 +215,12 @@ namespace CompanyManagementDataLayer
             }
 
         }
-        public List<Task> GetAllDelayedTasksForEmployee(int employeeID)
+        public List<Task> GetAllDelayedTasksForEmployee(int employeeID, int delayedStatus)
         {
             try
             {
                 List<Task> tasks = (from empTask in dataContext.EmployeeTasks
-                                    where empTask.EmployeeId == employeeID && empTask.Task.StatusId == Convert.ToInt32(CMEnum.Status.Delayed)
+                                    where empTask.EmployeeId == employeeID && empTask.Task.StatusId == delayedStatus
                                     select empTask.Task).ToList();
 
                 return tasks;
