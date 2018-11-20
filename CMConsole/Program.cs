@@ -35,7 +35,8 @@ namespace CMConsole
             //program.UpdateTechnologiesForTask();
             //program.DeleteEmployeeFromSystem();
             //program.DeleteTechnology();
-            program.DeleteTask();
+            //program.DeleteTask();
+            program.DeleteProject();
 
 
             Console.Read();
@@ -307,6 +308,18 @@ namespace CMConsole
             {
                 int taskID = 1;
                 dataLayer.DeleteTask(taskID);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public void DeleteProject()
+        {
+            try
+            {
+                int projectID = 1;
+                dataLayer.DeleteProject(projectID);
             }
             catch (Exception ex)
             {

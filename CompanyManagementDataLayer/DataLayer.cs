@@ -376,16 +376,51 @@ namespace CompanyManagementDataLayer
                 dataContext.SubmitChanges();
             }
 
-            Task tasks = (from task in dataContext.Tasks
-                                           where task.TaskId == taskID
-                                           select task).FirstOrDefault();
-            if (tasks != null)
+            Task task = (from tsk in dataContext.Tasks
+                                           where tsk.TaskId == taskID
+                                           select tsk).FirstOrDefault();
+            if (task != null)
             {
-                dataContext.Tasks.DeleteOnSubmit(tasks);
+                dataContext.Tasks.DeleteOnSubmit(task);
                 dataContext.SubmitChanges();
             }
         }
-        
+        public void DeleteProject(int projectID)
+        {
+            List<EmployeeProject> employeeProjects = (from employeeProject in dataContext.EmployeeProjects
+                                                where employeeProject.ProjectId == projectID
+                                                      select employeeProject).ToList();
+            if (employeeProjects.Count > 0)
+            {
+                dataContext.EmployeeProjects.DeleteAllOnSubmit(employeeProjects);
+                dataContext.SubmitChanges();
+            }
+            List<ProjectTask> projectTasks = (from projectTask in dataContext.ProjectTasks
+                                              where projectTask.ProjectId == projectID
+                                              select projectTask).ToList();
+            if (projectTasks.Count > 0)
+            {
+                dataContext.ProjectTasks.DeleteAllOnSubmit(projectTasks);
+                dataContext.SubmitChanges();
+            }
+            List<ProjectTechnology> projectTechnologies = (from projectTechnology in dataContext.ProjectTechnologies
+                                                     where projectTechnology.ProjectId == projectID
+                                                           select projectTechnology).ToList();
+            if (projectTechnologies.Count > 0)
+            {
+                dataContext.ProjectTechnologies.DeleteAllOnSubmit(projectTechnologies);
+                dataContext.SubmitChanges();
+            }
+
+            Project project = (from pro in dataContext.Projects
+                          where pro.ProjectId == projectID
+                                select pro).FirstOrDefault();
+            if (project != null)
+            {
+                dataContext.Projects.DeleteOnSubmit(project);
+                dataContext.SubmitChanges();
+            }
+        }
         private bool IsEmployeeExist(int employeeId)
         {
             bool isExist = (from employee in dataContext.Employees
