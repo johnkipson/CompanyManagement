@@ -656,7 +656,21 @@ namespace CompanyManagementDataLayer
                 throw ex;
             }
         }
-        
+        public int GetTechnologyCountForTask(int taskID)
+        {
+            try
+            {
+                int taskTechnologyCount = (from taskTechnology in dataContext.TaskTechnologies
+                                               where taskTechnology.TaskId == taskID
+                                               select taskTechnology).Count();
+                return taskTechnologyCount;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private bool IsEmployeeExist(int employeeId)
         {
             try

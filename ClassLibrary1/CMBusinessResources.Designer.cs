@@ -63,9 +63,18 @@ namespace CompanyManagementBusinessLayer {
         /// <summary>
         ///   Looks up a localized string similar to An already started task cannot be deleted.
         /// </summary>
-        internal static string AlreadyStartedTaskNotDeleted {
+        internal static string AlreadyStartedTaskNotDeletedErrorMessage {
             get {
-                return ResourceManager.GetString("AlreadyStartedTaskNotDeleted", resourceCulture);
+                return ResourceManager.GetString("AlreadyStartedTaskNotDeletedErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot delete technology used in more than {0} projects..
+        /// </summary>
+        internal static string DeleteTechnologyErrorMessage {
+            get {
+                return ResourceManager.GetString("DeleteTechnologyErrorMessage", resourceCulture);
             }
         }
         
@@ -79,11 +88,29 @@ namespace CompanyManagementBusinessLayer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 4.
+        /// </summary>
+        internal static string MaxNumberOfTechnologies {
+            get {
+                return ResourceManager.GetString("MaxNumberOfTechnologies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot assign more than {0} technologies to a task..
+        /// </summary>
+        internal static string MaxNumberOfTechnologiesErrorMessage {
+            get {
+                return ResourceManager.GetString("MaxNumberOfTechnologiesErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Technology is not assigned in project..
         /// </summary>
-        internal static string TechnologyNotAssigned {
+        internal static string TechnologyNotAssignedErrorMessage {
             get {
-                return ResourceManager.GetString("TechnologyNotAssigned", resourceCulture);
+                return ResourceManager.GetString("TechnologyNotAssignedErrorMessage", resourceCulture);
             }
         }
     }

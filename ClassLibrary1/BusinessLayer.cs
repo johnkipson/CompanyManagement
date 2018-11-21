@@ -11,7 +11,13 @@ namespace CompanyManagementBusinessLayer
     public class BusinessLayer
     {
         DataLayer dataLayer = new DataLayer();
-             
+
+
+        public string Test()
+        {
+            return string.Format(CMBusinessResources.MaxNumberOfTechnologiesErrorMessage, Convert.ToInt32(CMBusinessResources.MaxNumberOfTechnologies));
+        }
+
         public List<BOProject> GetAllProjects()
         {
             try
@@ -261,15 +267,19 @@ namespace CompanyManagementBusinessLayer
             try
             {
                 bool isTechnologyExist = dataLayer.IsTechnologyExistInTasksProject(technologyID, taskID);
-                if (isTechnologyExist)
+                if (!isTechnologyExist)
                 {
-                    dataLayer.AssignTechnologyToTask(technologyID, taskID);
+                    throw new Exception(CMBusinessResources.TechnologyNotAssignedErrorMessage);
                 }
-                else
-                {
-                    throw new Exception(CMBusinessResources.TechnologyNotAssigned);
-                }
+
+                int taskTechnologyCount = dataLayer.GetTechnologyCountForTask(taskID);
                 
+                if (taskTechnologyCount > Convert.ToInt32(CMBusinessResources.MaxNumberOfTechnologies))
+                {
+                    throw new Exception(string.Format(CMBusinessResources.MaxNumberOfTechnologiesErrorMessage, Convert.ToInt32(CMBusinessResources.MaxNumberOfTechnologies)));
+                }
+
+                dataLayer.AssignTechnologyToTask(technologyID, taskID);
             }
             catch (Exception ex)
             {
@@ -309,7 +319,7 @@ namespace CompanyManagementBusinessLayer
                 }
                 else
                 {
-                    throw new Exception("Cannot delete technology used in more than" + Convert.ToInt32(CMBusinessResources.MaxNumberOfProjects) + "projects");
+                    throw new Exception(string.Format(CMBusinessResources.DeleteTechnologyErrorMessage, Convert.ToInt32(CMBusinessResources.MaxNumberOfTechnologies)));
                 }
             }
             catch (Exception ex)
@@ -329,7 +339,7 @@ namespace CompanyManagementBusinessLayer
                 }
                 else
                 {
-                    throw new Exception(CMBusinessResources.AlreadyStartedTaskNotDeleted);
+                    throw new Exception(CMBusinessResources.AlreadyStartedTaskNotDeletedErrorMessage);
                 }
             }
             catch (Exception ex)
