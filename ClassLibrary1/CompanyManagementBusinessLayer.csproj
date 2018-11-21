@@ -7,8 +7,8 @@
     <ProjectGuid>{174988AC-68FB-4A84-A2BD-CF726363A110}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClassLibrary1</RootNamespace>
-    <AssemblyName>ClassLibrary1</AssemblyName>
+    <RootNamespace>CompanyManagementBusinessLayer</RootNamespace>
+    <AssemblyName>CompanyManagementBusinessLayer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,6 +42,11 @@
   <ItemGroup>
     <Compile Include="BusinessLayer.cs" />
     <Compile Include="BusinessLayerHelper.cs" />
+    <Compile Include="CMBusinessResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMBusinessResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="CMEnum.cs" />
     <Compile Include="Entities\BOEmployee.cs" />
     <Compile Include="Entities\BOProject.cs" />
@@ -54,6 +59,12 @@
       <Project>{6d17a969-eb89-4ac0-932c-21e2e2c62ae9}</Project>
       <Name>CompanyManagementDataLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CMBusinessResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CMBusinessResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

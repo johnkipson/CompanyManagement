@@ -11,7 +11,7 @@ namespace CompanyManagementBusinessLayer
     public class BusinessLayer
     {
         DataLayer dataLayer = new DataLayer();
-
+             
         public List<BOProject> GetAllProjects()
         {
             try
@@ -260,7 +260,16 @@ namespace CompanyManagementBusinessLayer
         {
             try
             {
-                dataLayer.AssignTechnologyToTask(technologyID, taskID);
+                bool isTechnologyExist = dataLayer.IsTechnologyExistInTasksProject(technologyID, taskID);
+                if (isTechnologyExist)
+                {
+                    dataLayer.AssignTechnologyToTask(technologyID, taskID);
+                }
+                else
+                {
+                    throw new Exception(CMBusinessResources.TechnologyNotAssigned);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -317,6 +326,10 @@ namespace CompanyManagementBusinessLayer
                 if (!isStarted)
                 {
                     dataLayer.DeleteTask(taskID);
+                }
+                else
+                {
+                    throw new Exception(CMBusinessResources.AlreadyStartedTaskNotDeleted);
                 }
             }
             catch (Exception ex)

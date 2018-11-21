@@ -8,8 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CompanyManagementBusinessLayer
-{
+namespace CompanyManagementBusinessLayer {
     using System;
     
     
@@ -40,7 +39,7 @@ namespace CompanyManagementBusinessLayer
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ClassLibrary1.CMBusinessResources", typeof(CMBusinessResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CompanyManagementBusinessLayer.CMBusinessResources", typeof(CMBusinessResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,11 +61,29 @@ namespace CompanyManagementBusinessLayer
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An already started task cannot be deleted.
+        /// </summary>
+        internal static string AlreadyStartedTaskNotDeleted {
+            get {
+                return ResourceManager.GetString("AlreadyStartedTaskNotDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 2.
         /// </summary>
         internal static string MaxNumberOfProjects {
             get {
                 return ResourceManager.GetString("MaxNumberOfProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technology is not assigned in project..
+        /// </summary>
+        internal static string TechnologyNotAssigned {
+            get {
+                return ResourceManager.GetString("TechnologyNotAssigned", resourceCulture);
             }
         }
     }

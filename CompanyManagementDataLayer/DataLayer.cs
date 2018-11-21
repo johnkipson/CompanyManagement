@@ -631,6 +631,32 @@ namespace CompanyManagementDataLayer
                 throw ex;
             }
         }
+        public bool IsTechnologyExistInTasksProject(int technologyID, int taskID)
+        {
+            try
+            {
+                List<int> projectIds = (from proTask in dataContext.ProjectTasks
+                                  where proTask.TaskId == taskID
+                                  select proTask.ProjectId).ToList();
+                foreach(int projectId in projectIds)
+                {
+                    bool isTechnologyExist = (from proTechnology in dataContext.ProjectTechnologies
+                                             where proTechnology.TechnologyId == technologyID && proTechnology.ProjectId== projectId
+                                             select proTechnology).Any();
+                    if (!isTechnologyExist)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
         private bool IsEmployeeExist(int employeeId)
         {
             try

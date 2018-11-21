@@ -14,6 +14,7 @@ namespace CMConsole
        BusinessLayer businessLayer = new BusinessLayer();
         static void Main(string[] args)
         {
+            
             Program program = new Program();
             program.GetAllProjects();
             //program.GetAllTechnologies();

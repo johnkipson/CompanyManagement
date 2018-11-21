@@ -6,5 +6,5 @@ D:\John\CompanyManagement\CMConsole\bin\Debug\CompanyManagementDataLayer.pdb
 D:\John\CompanyManagement\CMConsole\obj\Debug\CMConsole.csprojResolveAssemblyReference.cache
 D:\John\CompanyManagement\CMConsole\obj\Debug\ConsoleApplication1.exe
 D:\John\CompanyManagement\CMConsole\obj\Debug\ConsoleApplication1.pdb
-D:\John\CompanyManagement\CMConsole\bin\Debug\ClassLibrary1.dll
-D:\John\CompanyManagement\CMConsole\bin\Debug\ClassLibrary1.pdb
+D:\John\CompanyManagement\CMConsole\bin\Debug\CompanyManagementBusinessLayer.dll
+D:\John\CompanyManagement\CMConsole\bin\Debug\CompanyManagementBusinessLayer.pdb
