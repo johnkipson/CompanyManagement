@@ -603,6 +603,34 @@ namespace CompanyManagementDataLayer
                 throw ex;
             }
         }
+        public int GetProjectCountForTechnology(int technologyID)
+        {
+            try
+            {
+                int projectCount = (from proTech in dataContext.ProjectTechnologies
+                                    where proTech.TechnologyId == technologyID
+                                    select proTech).Count();
+                return projectCount;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool IsTaskAlreadyStarted(int status, int taskID)
+        {
+            try
+            {
+                bool isStarted = (from task in dataContext.Tasks
+                                  where task.TaskId == taskID && task.StatusId != status
+                                  select task).Any();
+                return isStarted;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         private bool IsEmployeeExist(int employeeId)
         {
             try

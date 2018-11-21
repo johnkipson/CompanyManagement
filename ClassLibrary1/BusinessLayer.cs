@@ -14,137 +14,326 @@ namespace CompanyManagementBusinessLayer
 
         public List<BOProject> GetAllProjects()
         {
-            List<Project> projects = dataLayer.GetAllProjects();
-            List<BOProject> businessProjects = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
-            return businessProjects;
+            try
+            {
+                List<Project> projects = dataLayer.GetAllProjects();
+                List<BOProject> businessProjects = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
+                return businessProjects;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<BOTechnology> GetAllTechnologies()
         {
-            List<TechnologyMaster> technologies = dataLayer.GetAllTechnologies();
-            List<BOTechnology> businessTechnologies = BusinessLayerHelper.ConvertTechnologyListToBOTechnologyList(technologies);
-            return businessTechnologies;
+            try
+            {
+                List<TechnologyMaster> technologies = dataLayer.GetAllTechnologies();
+                List<BOTechnology> businessTechnologies = BusinessLayerHelper.ConvertTechnologyListToBOTechnologyList(technologies);
+                return businessTechnologies;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public int GetEmployeeCountForProject(int ProjectID)
         {
-            int employeeCount = dataLayer.GetEmployeeCountForProject(ProjectID);
-            return employeeCount;
+            try
+            {
+                int employeeCount = dataLayer.GetEmployeeCountForProject(ProjectID);
+                return employeeCount;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<BOEmployee> GetAllEmployeesForProjects(int projectID)
         {
-            List<Employee> employees = dataLayer.GetAllEmployeesForProjects(projectID);
-            List<BOEmployee> businessEmployees = BusinessLayerHelper.ConvertEmployeeListToBOEmployeeList(employees);
-            return businessEmployees;
+            try
+            {
+                List<Employee> employees = dataLayer.GetAllEmployeesForProjects(projectID);
+                List<BOEmployee> businessEmployees = BusinessLayerHelper.ConvertEmployeeListToBOEmployeeList(employees);
+                return businessEmployees;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<BOProject> GetAllDelayedProjects()
         {
-            int delayedStatus = Convert.ToInt32(CMEnum.Status.Delayed);
-            List<Project> projects = dataLayer.GetAllDelayedProjects(delayedStatus);
-            List<BOProject> businessProjectsDelayed = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
-            return businessProjectsDelayed;
+            try
+            {
+                int delayedStatus = Convert.ToInt32(CMEnum.Status.Delayed);
+                List<Project> projects = dataLayer.GetAllDelayedProjects(delayedStatus);
+                List<BOProject> businessProjectsDelayed = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
+                return businessProjectsDelayed;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<BOProject> GetAllProjectsForEmployees(int employeeID)
         {
-            List<Project> projects = dataLayer.GetAllProjectsForEmployees(employeeID);
-            List<BOProject> businessProjectsForEmployee = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
-            return businessProjectsForEmployee;
+            try
+            {
+                List<Project> projects = dataLayer.GetAllProjectsForEmployees(employeeID);
+                List<BOProject> businessProjectsForEmployee = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
+                return businessProjectsForEmployee;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<BOTask> GetAllTasksForEmployee(int employeeID)
         {
-            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTasksForEmployee(employeeID);
-            List<BOTask> businessTasksForEmployee = BusinessLayerHelper.ConvertTaskListToBOTaskList(tasks);
-            return businessTasksForEmployee;
+            try
+            {
+                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTasksForEmployee(employeeID);
+                List<BOTask> businessTasksForEmployee = BusinessLayerHelper.ConvertTaskListToBOTaskList(tasks);
+                return businessTasksForEmployee;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
         public List<BOTask> GetAllTechnologyTasksForEmployee(int technologyID, int employeeID)
         {
-            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTechnologyTasksForEmployee(technologyID, employeeID);
-            List<BOTask> businessTechnologyTasksForEmployee = BusinessLayerHelper.ConvertTaskListToBOTaskList(tasks);
-            return businessTechnologyTasksForEmployee;
+            try
+            {
+                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTechnologyTasksForEmployee(technologyID, employeeID);
+                List<BOTask> businessTechnologyTasksForEmployee = BusinessLayerHelper.ConvertTaskListToBOTaskList(tasks);
+                return businessTechnologyTasksForEmployee;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<BOProject> GetAllTechnologyProjects(int technologyID)
         {
-            List<Project> projects = dataLayer.GetAllTechnologyProjects(technologyID);
-            List<BOProject> businessTechnologyProjects = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
-            return businessTechnologyProjects;
+            try
+            {
+                List<Project> projects = dataLayer.GetAllTechnologyProjects(technologyID);
+                List<BOProject> businessTechnologyProjects = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
+                return businessTechnologyProjects;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<BOTask> GetAllActiveTasksForProject(int projectID)
         {
-            int activeStatus = Convert.ToInt32(CMEnum.Status.Active);
-            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllActiveTasksForProject(projectID, activeStatus);
-            List<BOTask> businessTaskForProjects = BusinessLayerHelper.ConvertTaskListToBOTaskList(tasks);
-            return businessTaskForProjects;
+            try
+            {
+                int activeStatus = Convert.ToInt32(CMEnum.Status.Active);
+                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllActiveTasksForProject(projectID, activeStatus);
+                List<BOTask> businessTaskForProjects = BusinessLayerHelper.ConvertTaskListToBOTaskList(tasks);
+                return businessTaskForProjects;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<BOTechnology> GetAllTechnologiesForEmployee(int employeeID)
         {
-            List<TechnologyMaster> technologies = dataLayer.GetAllTechnologiesForEmployee(employeeID);
-            List<BOTechnology> businessTaskForProjects = BusinessLayerHelper.ConvertTechnologyListToBOTechnologyList(technologies);
-            return businessTaskForProjects;
+            try
+            {
+                List<TechnologyMaster> technologies = dataLayer.GetAllTechnologiesForEmployee(employeeID);
+                List<BOTechnology> businessTaskForProjects = BusinessLayerHelper.ConvertTechnologyListToBOTechnologyList(technologies);
+                return businessTaskForProjects;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public int GetProjectCountForEmployee(int employeeID)
         {
-            int projectCount = dataLayer.GetProjectCountForEmployee(employeeID);
-            return projectCount;
+            try
+            {
+                int projectCount = dataLayer.GetProjectCountForEmployee(employeeID);
+                return projectCount;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<BOProject> GetAllActiveProjectsManagedByEmployee(int employeeID)
         {
-            int activeStatus = Convert.ToInt32(CMEnum.Status.Active);
-            List<Project> projects = dataLayer.GetAllActiveProjectsManagedByEmployee(employeeID, activeStatus);
-            List<BOProject> businessActiveProjectsForEmployee = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
-            return businessActiveProjectsForEmployee;
+            try
+            {
+                int activeStatus = Convert.ToInt32(CMEnum.Status.Active);
+                List<Project> projects = dataLayer.GetAllActiveProjectsManagedByEmployee(employeeID, activeStatus);
+                List<BOProject> businessActiveProjectsForEmployee = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
+                return businessActiveProjectsForEmployee;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<BOTask> GetAllDelayedTasksForEmployee(int employeeID)
         {
-            int delayedStatus = Convert.ToInt32(CMEnum.Status.Delayed);
-            List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllDelayedTasksForEmployee(employeeID, delayedStatus);
-            List<BOTask> businessDelayedTaskForemployee = BusinessLayerHelper.ConvertTaskListToBOTaskList(tasks);
-            return businessDelayedTaskForemployee;
+            try
+            {
+                int delayedStatus = Convert.ToInt32(CMEnum.Status.Delayed);
+                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllDelayedTasksForEmployee(employeeID, delayedStatus);
+                List<BOTask> businessDelayedTaskForemployee = BusinessLayerHelper.ConvertTaskListToBOTaskList(tasks);
+                return businessDelayedTaskForemployee;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void AddProject(BOProject boProject)
         {
-            Project project = BusinessLayerHelper.ConvertBOProjectToProject(boProject);
-            dataLayer.AddProject(project);
+            try
+            {
+                Project project = BusinessLayerHelper.ConvertBOProjectToProject(boProject);
+                dataLayer.AddProject(project);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void AddTechnology(BOTechnology boTechnology)
         {
-            TechnologyMaster technology = BusinessLayerHelper.ConvertBOTechnologyToTechnology(boTechnology);
-            dataLayer.AddTechnology(technology);
+            try
+            {
+                TechnologyMaster technology = BusinessLayerHelper.ConvertBOTechnologyToTechnology(boTechnology);
+                dataLayer.AddTechnology(technology);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void AddEmployee(BOEmployee boEmployee)
         {
-            Employee employee = BusinessLayerHelper.ConvertBOEmployeeToEmployee(boEmployee);
-            dataLayer.AddEmployee(employee);
+            try
+            {
+                Employee employee = BusinessLayerHelper.ConvertBOEmployeeToEmployee(boEmployee);
+                dataLayer.AddEmployee(employee);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void AssignEmployeeToProject(int employeeID,int projectID)
         {
-            dataLayer.AssignEmployeeToProject(employeeID, projectID);
+            try
+            {
+                dataLayer.AssignEmployeeToProject(employeeID, projectID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void CreateTaskInProject(BOTask boTask, int projectID)
         {
-            CompanyManagementDataLayer.Task task = BusinessLayerHelper.ConvertBOTaskToTask(boTask);
-            dataLayer.CreateTaskInProject(task, projectID);
+            try
+            {
+                CompanyManagementDataLayer.Task task = BusinessLayerHelper.ConvertBOTaskToTask(boTask);
+                dataLayer.CreateTaskInProject(task, projectID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void AssignTechnologyToTask(int technologyID, int taskID)
         {
-            dataLayer.AssignTechnologyToTask(technologyID, taskID);
+            try
+            {
+                dataLayer.AssignTechnologyToTask(technologyID, taskID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void UpdateTechnologiesForTask(List<int> technologyID, int taskID)
         {
-            dataLayer.UpdateTechnologiesForTask(technologyID, taskID);
+            try
+            {
+                dataLayer.UpdateTechnologiesForTask(technologyID, taskID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void DeleteEmployeeFromSystem(int employeeID)
         {
-            dataLayer.DeleteEmployeeFromSystem(employeeID);
+            try
+            {
+                dataLayer.DeleteEmployeeFromSystem(employeeID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void DeleteTechnology(int technologyID)
         {
-            dataLayer.DeleteTechnology(technologyID);
+            try
+            {
+                int technologyCountInProjects = dataLayer.GetProjectCountForTechnology(technologyID);
+                if (technologyCountInProjects >= Convert.ToInt32(CMBusinessResources.MaxNumberOfProjects))
+                {
+                    dataLayer.DeleteTechnology(technologyID);
+                }
+                else
+                {
+                    throw new Exception("Cannot delete technology used in more than" + Convert.ToInt32(CMBusinessResources.MaxNumberOfProjects) + "projects");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void DeleteTask(int taskID)
         {
-            dataLayer.DeleteTask(taskID);
+            try
+            {
+                int status = Convert.ToInt32(CMEnum.Status.NotStarted);
+                bool isStarted = dataLayer.IsTaskAlreadyStarted(status, taskID);
+                if (!isStarted)
+                {
+                    dataLayer.DeleteTask(taskID);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void DeleteProject(int projectID)
         {
-            dataLayer.DeleteProject(projectID);
+            try
+            {
+                dataLayer.DeleteProject(projectID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
