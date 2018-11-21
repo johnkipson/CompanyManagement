@@ -150,4 +150,7 @@
   <data name="MaxNumberOfTechnologiesErrorMessage" xml:space="preserve">
     <value>Cannot assign more than {0} technologies to a task.</value>
   </data>
+  <data name="TaskNotCreatedCompletedProject" xml:space="preserve">
+    <value>Task cannot be created to a completed project.</value>
+  </data>
 </root>

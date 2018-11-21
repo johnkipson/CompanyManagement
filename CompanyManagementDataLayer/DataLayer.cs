@@ -617,14 +617,14 @@ namespace CompanyManagementDataLayer
                 throw ex;
             }
         }
-        public bool IsTaskAlreadyStarted(int status, int taskID)
+        public int GetTaskStatus(int taskID)
         {
             try
             {
-                bool isStarted = (from task in dataContext.Tasks
-                                  where task.TaskId == taskID && task.StatusId != status
-                                  select task).Any();
-                return isStarted;
+                int taskStatus = (from task in dataContext.Tasks
+                                  where task.TaskId == taskID 
+                                  select task.StatusId).FirstOrDefault();
+                return taskStatus;
             }
             catch (Exception ex)
             {
@@ -684,15 +684,15 @@ namespace CompanyManagementDataLayer
                 throw ex;
             }
         }
-        
-        public bool IsProjectAlreadyStarted(int status, int projectID)
+               
+        public int GetProjectStatus(int projectID)
         {
             try
             {
-                bool isStarted = (from project in dataContext.Projects
-                                  where project.ProjectId == projectID && project.StatusId != status
-                                  select project).Any();
-                return isStarted;
+                int projectStatus = (from project in dataContext.Projects
+                                     where project.ProjectId == projectID
+                                     select project.StatusId).FirstOrDefault();
+                return projectStatus;
             }
             catch (Exception ex)
             {

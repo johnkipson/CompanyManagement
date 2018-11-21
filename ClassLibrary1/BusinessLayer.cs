@@ -273,6 +273,12 @@ namespace CompanyManagementBusinessLayer
         {
             try
             {
+                int status = Convert.ToInt32(CMEnum.Status.Completed);
+                int projectStatus = dataLayer.GetProjectStatus(projectID);
+                if (projectStatus == status)
+                {
+                    throw new Exception(CMBusinessResources.TaskNotCreatedCompletedProject);
+                }
                 CompanyManagementDataLayer.Task task = BusinessLayerHelper.ConvertBOTaskToTask(boTask);
                 dataLayer.CreateTaskInProject(task, projectID);
             }
@@ -350,9 +356,8 @@ namespace CompanyManagementBusinessLayer
         {
             try
             {
-                int status = Convert.ToInt32(CMEnum.Status.NotStarted);
-                bool isStarted = dataLayer.IsTaskAlreadyStarted(status, taskID);
-                if (!isStarted)
+                int taskStatus = dataLayer.GetTaskStatus(taskID);
+                if (taskStatus == Convert.ToInt32(CMEnum.Status.NotStarted))
                 {
                     dataLayer.DeleteTask(taskID);
                 }
@@ -370,9 +375,8 @@ namespace CompanyManagementBusinessLayer
         {
             try
             {
-                int status = Convert.ToInt32(CMEnum.Status.NotStarted);
-                bool isStarted = dataLayer.IsProjectAlreadyStarted(status, projectID);
-                if (!isStarted)
+                int projectStatus = dataLayer.GetProjectStatus(projectID);
+                if (projectStatus == Convert.ToInt32(CMEnum.Status.NotStarted))
                 {
                     dataLayer.DeleteProject(projectID);
                 }

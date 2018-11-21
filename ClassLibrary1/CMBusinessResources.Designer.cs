@@ -151,6 +151,15 @@ namespace CompanyManagementBusinessLayer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Task cannot be created to a completed project..
+        /// </summary>
+        internal static string TaskNotCreatedCompletedProject {
+            get {
+                return ResourceManager.GetString("TaskNotCreatedCompletedProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Technology is not assigned in project..
         /// </summary>
         internal static string TechnologyNotAssignedErrorMessage {
