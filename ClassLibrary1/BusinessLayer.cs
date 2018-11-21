@@ -239,17 +239,36 @@ namespace CompanyManagementBusinessLayer
                 throw ex;
             }
         }
-        public void AssignEmployeeToProject(int employeeID,int projectID)
+        public void AssignEmployeeToProject(int employeeID, int projectID)
         {
             try
             {
+                int designationID = dataLayer.GetDesignationIDForEmployee(employeeID);
+                int projectCountForEmployee = dataLayer.GetProjectCountForEmployee(employeeID);
+                if (designationID == Convert.ToInt32(CMEnum.Designation.Manager))
+                {
+                    if (projectCountForEmployee > Convert.ToInt32(CMBusinessResources.MaxNumberOfProjectsPM))
+                    {
+                        throw new Exception(string.Format(CMBusinessResources.MaxNumberOfProjectsPMErrorMessage, Convert.ToInt32(CMBusinessResources.MaxNumberOfProjectsPM)));
+                    }
+                }
+                else
+                {
+                    if (projectCountForEmployee > Convert.ToInt32(CMBusinessResources.MaxNumberOfProjectsEmployee))
+                    {
+                        throw new Exception(string.Format(CMBusinessResources.MaxNumberOfProjectsEmployeeErrorMessage, Convert.ToInt32(CMBusinessResources.MaxNumberOfProjectsPM)));
+                    }
+                }
+
                 dataLayer.AssignEmployeeToProject(employeeID, projectID);
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
         public void CreateTaskInProject(BOTask boTask, int projectID)
         {
             try
@@ -351,6 +370,7 @@ namespace CompanyManagementBusinessLayer
         {
             try
             {
+                int status = Convert.ToInt32(CMEnum.Status.NotStarted);
                 dataLayer.DeleteProject(projectID);
             }
             catch (Exception ex)

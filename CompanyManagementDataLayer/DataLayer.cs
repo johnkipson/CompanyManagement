@@ -670,7 +670,15 @@ namespace CompanyManagementDataLayer
                 throw ex;
             }
         }
-
+        public int GetDesignationIDForEmployee(int employeeID)
+        {
+            int DesignationID = (from employee in dataContext.Employees
+                                 where employee.EmployeeId == employeeID
+                                 select employee.DesignationId).First();
+            return DesignationID;
+        }
+       
+        
         private bool IsEmployeeExist(int employeeId)
         {
             try

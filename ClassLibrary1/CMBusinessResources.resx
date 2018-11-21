@@ -126,6 +126,21 @@
   <data name="TechnologyNotAssignedErrorMessage" xml:space="preserve">
     <value>Technology is not assigned in project.</value>
   </data>
+  <data name="DeleteTechnologyErrorMessage" xml:space="preserve">
+    <value>Cannot delete technology used in more than {0} projects.</value>
+  </data>
+  <data name="MaxNumberOfProjectsEmployee" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="MaxNumberOfProjectsEmployeeErrorMessage" xml:space="preserve">
+    <value>Cannot assign more than {0} projects to an Employee.</value>
+  </data>
+  <data name="MaxNumberOfProjectsPM" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="MaxNumberOfProjectsPMErrorMessage" xml:space="preserve">
+    <value>Cannot assign more than {0} projects to an PM.</value>
+  </data>
   <data name="MaxNumberOfTechnologies" xml:space="preserve">
     <value>4</value>
   </data>

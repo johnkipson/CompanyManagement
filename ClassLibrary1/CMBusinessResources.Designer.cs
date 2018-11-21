@@ -88,6 +88,42 @@ namespace CompanyManagementBusinessLayer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string MaxNumberOfProjectsEmployee {
+            get {
+                return ResourceManager.GetString("MaxNumberOfProjectsEmployee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot assign more than {0} projects to an Employee..
+        /// </summary>
+        internal static string MaxNumberOfProjectsEmployeeErrorMessage {
+            get {
+                return ResourceManager.GetString("MaxNumberOfProjectsEmployeeErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        internal static string MaxNumberOfProjectsPM {
+            get {
+                return ResourceManager.GetString("MaxNumberOfProjectsPM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot assign more than {0} projects to an PM..
+        /// </summary>
+        internal static string MaxNumberOfProjectsPMErrorMessage {
+            get {
+                return ResourceManager.GetString("MaxNumberOfProjectsPMErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 4.
         /// </summary>
         internal static string MaxNumberOfTechnologies {
