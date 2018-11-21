@@ -672,13 +672,34 @@ namespace CompanyManagementDataLayer
         }
         public int GetDesignationIDForEmployee(int employeeID)
         {
-            int DesignationID = (from employee in dataContext.Employees
-                                 where employee.EmployeeId == employeeID
-                                 select employee.DesignationId).First();
-            return DesignationID;
+            try
+            {
+                int designationID = (from employee in dataContext.Employees
+                                     where employee.EmployeeId == employeeID
+                                     select employee.DesignationId).FirstOrDefault();
+                return designationID;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-       
         
+        public bool IsProjectAlreadyStarted(int status, int projectID)
+        {
+            try
+            {
+                bool isStarted = (from project in dataContext.Projects
+                                  where project.ProjectId == projectID && project.StatusId != status
+                                  select project).Any();
+                return isStarted;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private bool IsEmployeeExist(int employeeId)
         {
             try

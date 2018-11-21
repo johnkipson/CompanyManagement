@@ -371,7 +371,15 @@ namespace CompanyManagementBusinessLayer
             try
             {
                 int status = Convert.ToInt32(CMEnum.Status.NotStarted);
-                dataLayer.DeleteProject(projectID);
+                bool isStarted = dataLayer.IsProjectAlreadyStarted(status, projectID);
+                if (!isStarted)
+                {
+                    dataLayer.DeleteProject(projectID);
+                }
+                else
+                {
+                    throw new Exception(CMBusinessResources.AlreadyStartedProjectNotDeletedErrorMessage);
+                }
             }
             catch (Exception ex)
             {

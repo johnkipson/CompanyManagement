@@ -61,6 +61,15 @@ namespace CompanyManagementBusinessLayer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An already started project cannot be deleted..
+        /// </summary>
+        internal static string AlreadyStartedProjectNotDeletedErrorMessage {
+            get {
+                return ResourceManager.GetString("AlreadyStartedProjectNotDeletedErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An already started task cannot be deleted.
         /// </summary>
         internal static string AlreadyStartedTaskNotDeletedErrorMessage {

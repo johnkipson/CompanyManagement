@@ -126,6 +126,9 @@
   <data name="TechnologyNotAssignedErrorMessage" xml:space="preserve">
     <value>Technology is not assigned in project.</value>
   </data>
+  <data name="AlreadyStartedProjectNotDeletedErrorMessage" xml:space="preserve">
+    <value>An already started project cannot be deleted.</value>
+  </data>
   <data name="DeleteTechnologyErrorMessage" xml:space="preserve">
     <value>Cannot delete technology used in more than {0} projects.</value>
   </data>
