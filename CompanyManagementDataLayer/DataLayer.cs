@@ -204,7 +204,7 @@ namespace CompanyManagementDataLayer
             try
             {
                 List<Project> projects = (from empProject in dataContext.EmployeeProjects
-                                          where empProject.EmployeeId == employeeID && empProject.Employee.DesignationId == designationID && empProject.Project.StatusId == activeStatus
+                                          where empProject.EmployeeId == employeeID && empProject.Employee.DesignationId == designationID && empProject.Project.StatusId == status
                                           select empProject.Project).ToList();
 
                 return projects;
