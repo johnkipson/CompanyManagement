@@ -140,8 +140,8 @@ namespace CompanyManagementBusinessLayer
         {
             try
             {
-                int activeStatus = Convert.ToInt32(CMEnum.Status.Active);
-                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllActiveTasksForProject(projectID, activeStatus);
+                int status = Convert.ToInt32(CMEnum.Status.Active);
+                List<CompanyManagementDataLayer.Task> tasks = dataLayer.GetAllTasksForProject(projectID, status);
                 List<BOTask> businessTaskForProjects = BusinessLayerHelper.ConvertTaskListToBOTaskList(tasks);
                 return businessTaskForProjects;
             }
@@ -180,7 +180,8 @@ namespace CompanyManagementBusinessLayer
             try
             {
                 int activeStatus = Convert.ToInt32(CMEnum.Status.Active);
-                List<Project> projects = dataLayer.GetAllActiveProjectsManagedByEmployee(employeeID, activeStatus);
+                int designationID = Convert.ToInt32(CMEnum.Designation.Manager);
+                List<Project> projects = dataLayer.GetAllProjectsOfEmployee(employeeID, activeStatus, designationID);
                 List<BOProject> businessActiveProjectsForEmployee = BusinessLayerHelper.ConvertProjectListToBOProjectList(projects);
                 return businessActiveProjectsForEmployee;
             }

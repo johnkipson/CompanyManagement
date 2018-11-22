@@ -149,12 +149,12 @@ namespace CompanyManagementDataLayer
             }
 
         }
-        public List<Task> GetAllActiveTasksForProject(int projectID, int activeStatus)
+        public List<Task> GetAllTasksForProject(int projectID, int status)
         {
             try
             {
                 List<Task> tasks = (from projectTask in dataContext.ProjectTasks
-                                    where projectTask.ProjectId == projectID && projectTask.Task.StatusId == activeStatus
+                                    where projectTask.ProjectId == projectID && projectTask.Task.StatusId == status
                                     select projectTask.Task).ToList();
                 return tasks;
             }
@@ -168,12 +168,12 @@ namespace CompanyManagementDataLayer
         {
             try
             {
-                List<int> projectIds = (from empProject in dataContext.EmployeeProjects
-                                        where empProject.EmployeeId == employeeID
-                                        select empProject.ProjectId).ToList();
-                List<TechnologyMaster> technologies = (from projectTechnology in dataContext.ProjectTechnologies
-                                                       where projectIds.Contains(projectTechnology.ProjectId)
-                                                       select projectTechnology.TechnologyMaster).ToList();
+                List<int> taskIds = (from empTask in dataContext.EmployeeTasks
+                                        where empTask.EmployeeId == employeeID
+                                        select empTask.TaskId).ToList();
+                List<TechnologyMaster> technologies = (from taskTechnology in dataContext.TaskTechnologies
+                                                       where taskIds.Contains(taskTechnology.TaskId)
+                                                       select taskTechnology.TechnologyMaster).ToList();
                 return technologies;
             }
             catch (Exception ex)
@@ -199,12 +199,12 @@ namespace CompanyManagementDataLayer
 
         }
 
-        public List<Project> GetAllActiveProjectsManagedByEmployee(int employeeID, int activeStatus)
+        public List<Project> GetAllProjectsOfEmployee(int employeeID, int status, int designationID)
         {
             try
             {
                 List<Project> projects = (from empProject in dataContext.EmployeeProjects
-                                          where empProject.EmployeeId == employeeID && empProject.Project.StatusId == activeStatus
+                                          where empProject.EmployeeId == employeeID && empProject.Employee.DesignationId == designationID && empProject.Project.StatusId == activeStatus
                                           select empProject.Project).ToList();
 
                 return projects;
